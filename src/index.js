@@ -10,12 +10,13 @@ import {
 } from 'react-router-dom'
 
 import { Header } from "./components"
+import Post from './components/Post';
 
 const App = () => {
   return (
     <div id="App">
       <h1>Hello, World!!!</h1>
-      <Header />
+      <Post />
     </div>
   );
 };
