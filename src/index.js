@@ -9,8 +9,7 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import { Header } from "./components"
-import Post from './components/Post';
+import { Post } from "./components"
 
 const App = () => {
   return (
