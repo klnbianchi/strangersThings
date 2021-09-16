@@ -10,7 +10,7 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import { Post } from "./components"
+import { Post, Login } from "./components"
 
 const App = () => {
 //   const [posts, setPosts] = useState([]);
@@ -41,6 +41,7 @@ const App = () => {
   return (
     <div id="App">
       <h1>Hello, World!!!</h1>
+      <Login />
       <Post />
     </div>
   );
