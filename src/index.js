@@ -10,9 +10,10 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import { Header } from "./components"
+import { Post } from "./components"
 
 const App = () => {
+<<<<<<< HEAD
 //   const [posts, setPosts] = useState([]);
 //   console.log('posts:', posts);
 
@@ -39,6 +40,15 @@ const App = () => {
 //     </div>
 //   );
  };
+=======
+  return (
+    <div id="App">
+      <h1>Hello, World!!!</h1>
+      <Post />
+    </div>
+  );
+};
+>>>>>>> 0788d77ec339005fe60a19abe0e8abcc0ebf6745
 
 ReactDOM.render(
   <Router>
