@@ -10,14 +10,15 @@ const Post = (props) => {
     }, []);
 
     return (
-        <div>
+        <div className="posts">
             <h1>Posts</h1>
             {
                 allPosts.length
                     ? allPosts.map(e => {
                         return (
-                            <div key={e._id}>
-                                <h3>{e.title}</h3>
+                            <div key={e._id}
+                            className="user-posts">
+                                <h3 className="post-title">{e.title}</h3>
                                 <p>{e.description}</p>
                             </div>
                         )
