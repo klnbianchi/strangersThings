@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { createPost } from '../api'
 import {getToken} from '../auth'
@@ -68,6 +69,3 @@ const CreatePost = (props) => {
             </form>
         </div>
     )
-}
-
-export default CreatePost;
