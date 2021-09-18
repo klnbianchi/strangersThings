@@ -10,38 +10,17 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import { Post, Login } from "./components"
+import { Post, Login, Register } from "./components"
 
 const App = () => {
-//   const [posts, setPosts] = useState([]);
-//   console.log('posts:', posts);
+  const [isLoggedIn, setIsLoggedin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-//   useEffect(() => {
-//     const fetchPosts = async () => {
-//       const resp = await fetch ('https://jsonplace-univclone.herokuapp.com/posts');
-//       const data = await resp.json();
-//       console.log('data: ', data);
-//       setPosts(data);
-//     }
-
-//     fetchPosts();
-
-//   }, [])
-
-//   return (
-//     <div id="App">
-//       <h1>Stranger Things</h1>
-//       {
-//         posts.map(post => <div>key={post.id}
-//         {post.title}</div>)
-//       }
-//       <Header />
-//     </div>
-//   );
   return (
     <div id="App">
       <h1>Hello, World!!!</h1>
       <Login />
+      <Register />
       <Post />
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { loginUser } from '../api'
 import { storeToken } from '../auth';
+import StLogo from '../images/stLogo.png'
 
 const Login = ({ setIsLoggedIn }) => {
     const [username, setUsername] = useState('');
@@ -8,6 +9,7 @@ const Login = ({ setIsLoggedIn }) => {
 
     return (
         <div className="login">
+            <img className="st-logo-h2" src={StLogo}/>
             <h2>Log-in to your account</h2>
             <form
                 className="login-form"
