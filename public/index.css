@@ -75,3 +75,93 @@ body {
     border-radius: 2px;
     padding: 10px;
 }
+
+.posts-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 2em;
+  }
+  
+  .posts {
+    grid-column: 1;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .post-title {
+    margin-bottom: 5px;
+    color: #354f52;
+    font-size: 20px;
+  }
+  
+  .post-description{
+  padding-bottom: 15px;
+  }
+  
+  .post-des-info {
+    color: #52796f;
+    font-weight: 600;
+    line-height: 1.5em;
+  }
+
+  .create-post {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin:1.5em;
+  }
+  
+  .user-posts {
+    background-color: white;
+    margin: 1.5em;
+    padding: 15px;
+    border-bottom: 1px solid lightgrey;
+  }
+  
+  .create-post-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    margin: 1em;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+  }
+  
+  .create-post-form input {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid lightgrey;
+  }
+  
+  .create-post-form textarea {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid lightgrey;
+  }
+  
+  .create-post-form button {
+    background-color: #354f52;
+    color: white;
+    margin: 5px;
+    border-radius: 2px;
+    padding: 10px;
+    font-size: 15px;
+  }
+  
+  .post-checkbox {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px;
+  }
+  
+  .create-post>h2 {
+    color: #2f3e46;
+    font-weight: 600;
+  }

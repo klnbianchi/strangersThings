@@ -1,46 +1,73 @@
-import { storeOptionsAsProperties } from 'commander';
-import { async } from 'q';
-import React from 'react';
-import { useState } from 'react/cjs/react.development';
+import React, { useState } from 'react';
+import { createPost } from '../api'
+import {getToken} from '../auth'
 
 const CreatePost = (props) => {
-  const [title, setTitle] = useState([]);
-  const [body, setBody] = useState([]);
+    const [username, setUsername] = useState('');
+    const [title, setTitle] = useState('');
+    const [location, setLocation] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
+    const [willDeliver, setWillDeliver] = useState(false);
+   
+    return (
+        <div className="create-post">
+            <h2>Add a New Listing </h2>
+            <form
+                className="create-post-form"
+                onSubmit={async (e) => {
+                    e.preventDefault();
+                    const userToken=getToken();
+                    try {
+                        const results = await createPost(title, description, price, location, willDeliver, userToken)
+                    } catch (err) {
+                        console.log(err)
+                    } finally {
 
-  const handleSubmit = async (ev) => {
-    ev.preventDefault();
-    console.log('title, description', title, body);
-    const response = await fetch ('https://jsonplace-univclone.herokuapp.com/posts', {
-      method: 'POST', 
-      headers: {
-        'Content-type': 'Application/json'
-      },
-      body: JSON.stringify({
-        title,
-        body,
+                    }
+                }}>
 
-      })
-    });
-    const data = await response.json();
-    console.log('data', data);
-    setPosts([data, ...posts]);
-    setTitle('');
-    setBody('');
-  }
+                <input
+                    type="text"
+                    id="post-title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Title" />
 
-  return (
-    <div>
-      <h1>Create Post</h1>
+                <textarea
+                    // type="textarea"
+                    id="post-description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Description"
+                    rows={8} />
+                <input
+                    type="text"
+                    id="post-price"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="Price" />
+                <input
+                    type="text"
+                    id="post-location"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    placeholder="Location" />
 
-    <form onSubmit={handleSubmit}>
-      <input type="text" placeholder="title" value={title} onChange=
-      {(ev) => setTitle(ev.target.value)}></input>
+                <label className="post-checkbox">
+                    <input
+                        type="checkbox"
+                        id="post-deliver"
+                        value={location}
+                        onChange={(e) => setWillDeliver(true)}
 
-<input type="text" placeholder="body" value={description} onChange=
-      {(ev) => setBody(ev.target.value)}></input>
-    </form>
-    </div>
-  )
+                    />
+                    <p>Willing to Deliver?</p>
+                </label>
+                <button>Create Post</button>
+            </form>
+        </div>
+    )
 }
 
 export default CreatePost;
