@@ -3,7 +3,7 @@ import React from 'react';
 const Header = (props) => {
   return (
     <div>
-      <h1>hello world!</h1>
+      <h1>Welcome to Stranger Things!</h1>
     </div>
   )
 }
