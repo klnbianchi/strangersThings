@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const BASE = 'https://strangers-things.herokuapp.com/api/2106-CPU-RM-WEB-PT'
 
-
 export async function fetchAllPosts() {
   try {
     const { data: { data } } = await axios.get(`${BASE}/posts`);
@@ -94,6 +93,20 @@ export async function deletePost(token, postId) {
   try {
     const { data } = await axios.delete(`${BASE}/posts/${postId}`,
       { headers: { Authorization: `Bearer ${token}` } });
+    return data
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function sendMessage(postId,content, token) {
+  try {
+    const { data } = await axios.post(`${BASE}/posts/${postId}/messages`,
+      {
+        message: {
+         content: content
+        }
+      }, { headers: { Authorization: `Bearer ${token}` } });
     return data
   } catch (error) {
     throw error;
