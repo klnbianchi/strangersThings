@@ -19,7 +19,12 @@ const CreatePost = (props) => {
                     e.preventDefault();
                     const userToken=getToken();
                     try {
-                        const results = await createPost(title, description, price, location, willDeliver, userToken)
+                        const results = await createPost(title, description, price, location, willDeliver, userToken);
+                        setTitle('');
+                        setDescription('');
+                        setPrice('');
+                        setLocation('');
+                        willDeliver(false);
                     } catch (err) {
                         console.log(err)
                     } finally {

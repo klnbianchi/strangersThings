@@ -12,7 +12,7 @@ const Login = (props) => {
     const history = useHistory();
 
     const handleClick = () => {
-        history.push('/profile');
+        history.push('/');
     }
 
     return (
