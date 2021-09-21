@@ -6,6 +6,7 @@ export { default as Login } from './Login';
 export { default as Register } from './Register';
 export { default as Profile } from './Profile';
 export { default as Messages } from './Messages';
+export { default as SingleMessage} from './SingleMessage';
 export { default as CreatePost } from './CreatePost';
 export { default as UserPosts } from './UserPosts';
 export { default as DropdownMenu } from './DropdownMenu';

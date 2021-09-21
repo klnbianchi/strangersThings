@@ -32,6 +32,7 @@ console.log(messages, "!!!!")
             <UserPosts
                 userPosts={highlightedPost}
                 userName={userName} />
+                <SingleMessage messages={messages} />
 
         </div>
         // render edit post option here
