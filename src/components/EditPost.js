@@ -13,7 +13,7 @@ const EditPost = ({editPost}) => {
     return (
         <>
         { editPost
-       ? <div className="create-post">
+       ? <div className="edit-post">
             <h2>Edit Post </h2>
             <form
                 className="create-post-form"
@@ -72,7 +72,7 @@ const EditPost = ({editPost}) => {
                     />
                     <p>Willing to Deliver?</p>
                 </label>
-                <button>Create Post</button>
+                <button>Edit Post</button>
             </form>
         </div>
         : null

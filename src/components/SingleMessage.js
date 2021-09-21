@@ -2,9 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 const SingleMessage = ({messages}) => {
  
-useEffect(()=>{
-console.log(messages, 'from single message')
-},[])
+  // console.log(messages[0], "from single message component")
   return (
     <div className="user-messages">
    {
