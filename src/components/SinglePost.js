@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const SinglePost = ({ allPosts }) => {
     return <div>{
         allPosts ?
@@ -28,6 +29,7 @@ const SinglePost = ({ allPosts }) => {
                 )
             })
             : null
+
     }
 
     </div>

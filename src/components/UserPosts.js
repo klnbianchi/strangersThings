@@ -4,7 +4,10 @@ import { fetchUserData } from '../api';
 import { getToken } from '../auth'
 
 
-const UserPosts = ({ userPosts, userName }) => {
+
+
+const UserPosts = ({ userPosts, userName}) => {
+
     const { userPostId } = useParams();
 
     const deletePost = async () => {
@@ -25,6 +28,7 @@ const UserPosts = ({ userPosts, userName }) => {
                     userPosts
                         ? userPosts.map(e => {
                             return (
+
                                 <>
                                     { e.active
                                         ? <div
@@ -56,6 +60,7 @@ const UserPosts = ({ userPosts, userName }) => {
                                         </div>
                                         : null}
                                 </>
+
                             )
                         })
                         : <h2>You have not created any posts</h2>
