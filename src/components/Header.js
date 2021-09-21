@@ -3,6 +3,7 @@ import StLogoHorizontal from '../images/st-horizontal.png'
 
 const Header = ({ isLoggedIn, userName }) => {
   return (
+
     <div>
       {
         !isLoggedIn
@@ -15,6 +16,7 @@ const Header = ({ isLoggedIn, userName }) => {
             <h1>Welcome {userName}!</h1>
             </div>
       }
+
 
 
     </div>

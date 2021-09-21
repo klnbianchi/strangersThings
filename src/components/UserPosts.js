@@ -5,7 +5,10 @@ import { getToken } from '../auth'
 
 
 
-const UserPosts = ({ userPosts, userName }) => {
+
+const UserPosts = ({ userPosts, userName}) => {
+
+
     const { userPostId } = useParams();
     const history = useHistory();
 
@@ -21,7 +24,9 @@ const UserPosts = ({ userPosts, userName }) => {
                     userPosts
                         ? userPosts.map(e => {
                             return (
+
                                 <div key={e._id}>
+
                                     { e.active
                                         ? <div
                                         
@@ -60,7 +65,9 @@ const UserPosts = ({ userPosts, userName }) => {
                                             }
                                         </div>
                                         : null}
+
                                 </div>
+
                             )
                         })
                         : <h2>You have not created any posts</h2>

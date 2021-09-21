@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+
 const SinglePost = ({ allPosts }) => {
     const { postId } = useParams();
 
@@ -35,6 +36,7 @@ const SinglePost = ({ allPosts }) => {
                 )
             })
             : null
+
     }
 
     </div>
