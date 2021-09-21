@@ -32,7 +32,11 @@ body {
   margin-left: 2.5em;
 }
 
-.nav-bar-links{
+.logo-horizontal{
+  height: 14px;
+}
+
+.nav-bar-links {
   display: flex;
 }
 
@@ -48,9 +52,23 @@ body {
   margin-right: 2.5em;
 }
 
-.welcome-header{
-margin: 1.5em;
-text-align: center;
+.welcome-header {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2em;
+  text-align: center;
+}
+
+.welcome-header>h1{
+  color: #354f52;
+  font-weight: 600;
+}
+
+.welcome-logo{
+  height: 30px;
+ margin:8px;
 }
 
 .login {
@@ -112,8 +130,8 @@ text-align: center;
   font-size: 20px;
 }
 
-.post-description{
-padding-bottom: 15px;
+.post-description {
+  padding-bottom: 15px;
 }
 
 .post-des-info {
@@ -122,11 +140,10 @@ padding-bottom: 15px;
   line-height: 1.5em;
 }
 
-.post-link{
+.post-link {
   text-decoration: none;
   color: #354f52;
   font-weight: 700;
-
 }
 
 .post-go-back {
@@ -138,7 +155,7 @@ padding-bottom: 15px;
   background-color: #2f3e46;
 }
 
-.edit-post-button,.delete-post-button{
+.edit-post-button, .delete-post-button {
   padding: 10px;
   border-radius: 2px;
   font-size: 15px;
@@ -146,21 +163,21 @@ padding-bottom: 15px;
   margin: 10px 0;
 }
 
-.edit-post-button{
+.edit-post-button {
   background-color: #52796f;
 }
 
-.edit-post-button:hover{
+.edit-post-button:hover {
   background-color: #84a98c;
 }
 
-.delete-post-button{
+.delete-post-button {
   background-color: #2f3e46;
   margin-left: 30px;
 }
 
-.delete-post-button:hover{
-  background-color: darkred ;
+.delete-post-button:hover {
+  background-color: darkred;
 }
 
 .create-post {
@@ -169,7 +186,7 @@ padding-bottom: 15px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin:1.5em;
+  margin: 1.5em;
 }
 
 .user-posts {
@@ -284,6 +301,7 @@ padding-bottom: 15px;
 }
 
 /* dropdown menu */
+
 .menu-container {
   position: relative;
 }
@@ -354,7 +372,7 @@ padding-bottom: 15px;
   border-radius: 2px;
 }
 
-.send-message-form>h2{
+.send-message-form>h2 {
   color: #2f3e46;
   font-weight: 600;
 }
@@ -380,36 +398,35 @@ padding-bottom: 15px;
   font-size: 15px;
 }
 
-.search-bar-main{
-  grid-row:1;
-  display:flex;
-  width:100%;
+.search-bar-main {
+  grid-row: 1;
+  display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
   margin-top: 2em;
 }
 
-.search-bar{
-   width: 50%;
- display: flex;
- flex-direction: row;
- align-items: center;
+.search-bar {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.search-bar input{
-width:100%;
-    padding: 10px;
-    margin: 1em;
-    border: 1px solid lightgrey;
-    border-radius:2px;
- 
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  margin: 1em;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
 }
 
-.st-logo-search{
+.st-logo-search {
   width: 40px;
 }
 
-.search-button{
+.search-button {
   background-color: #354f52;
   color: white;
   margin: 5px;
@@ -419,10 +436,10 @@ width:100%;
   height: 40px;
 }
 
-.show{
+.show {
   display: unset;
 }
 
-.hide{
-  display:none;
+.hide {
+  display: none;
 }
