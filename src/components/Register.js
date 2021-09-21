@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { registerUser } from '../api'
 import {storeToken} from '../auth'
 import StLogo from '../images/stLogo.png'
 
-const Register = ({ setIsLoggedIn, setIsLoading }) => {
+const Register = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState(false);
     const [token, setToken] = useState('');
     const history = useHistory();
+    const { setIsLoggedin, setIsLoading } = props;
 
     const handleClick = () => {
         history.push('/profile');
@@ -69,7 +70,7 @@ const Register = ({ setIsLoggedIn, setIsLoading }) => {
                     Register</button>
             </form>
 
-            <p>Already have an account? <a href="./Login">Login</a></p>
+            <p>Already have an account? <Link className='signup-link' to="/login">Login</Link></p>
         </div>
     )
 }
