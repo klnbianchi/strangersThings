@@ -10,7 +10,7 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import { Post, Login, Register } from "./components"
+import {Post, Login, Register } from "./components"
 
 const App = () => {
   const [isLoggedIn, setIsLoggedin] = useState(false);
