@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import StLogoHorizontal from './images/st-horizontal.png'
-import { fetchAllPosts, fetchUserData } from './api'
+import { fetchAllPosts, fetchUserData,fetchAllMessages } from './api'
 import { getToken } from './auth'
 
 import {
@@ -36,8 +35,8 @@ const App = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [messages, setMessages]=useState([]);
   const [editPost, setEditPost] = useState(false);
- 
 
+ 
   useEffect(async () => {
     const posts = await fetchAllPosts();
     setAllPosts(posts);
@@ -48,18 +47,19 @@ const App = () => {
       const userToken = getToken();
       const userInfo = await fetchUserData(userToken);
       setUserPosts(userInfo.posts);
-      setUserName(userInfo.username); 
+      setUserName(userInfo.username);
+      setMessages(userInfo.messages);
+       
+//       const postArr=userInfo.posts;
+//       let userMessages
 
-      const postArr=userInfo.posts;
-      let userMessages
-
-for(let i=0;i<postArr.length;i++){
-  if (postArr[i].messages.length){
-    userMessages=[...postArr[i].messages]
-  }
-}
- setMessages(userMessages);
- console.log(userMessages)
+// for(let i=0;i<postArr.length;i++){
+//   if (postArr[i].messages.length){
+//     userMessages=[...postArr[i].messages]
+//   }
+// }
+//  setMessages(userMessages);
+//  console.log(userMessages)
     }catch(err){
       console.log(err)
     }
@@ -122,8 +122,7 @@ for(let i=0;i<postArr.length;i++){
             userPosts={userPosts}
             userName={userName}
             setEditPost={setEditPost}
-           
-            // messages={messages}
+     
              />
         </Route>
         <Route path="/profile/userposts/:userPostId">
@@ -132,6 +131,7 @@ for(let i=0;i<postArr.length;i++){
           userName={userName}
           messages={messages}
           editPost={editPost}
+          setEditPost={setEditPost}
          />
          </Route>
         <Route exact path="/">

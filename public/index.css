@@ -443,3 +443,25 @@ body {
 .hide {
   display: none;
 }
+
+.single-user-post{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 2em;
+}
+
+.edit-post {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5em;
+}
+
+.edit-post>h2{
+  color: #2f3e46;
+  font-weight: 600;
+}

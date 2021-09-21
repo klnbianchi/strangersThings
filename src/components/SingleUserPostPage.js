@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams, } from 'react-router-dom';
 import { UserPosts } from './';
 import { SingleMessage } from './'
+import {EditPost} from './'
 
 
 
-const SingleUserPostPage = ({ userPosts, userName, messages }) => {
+const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPost }) => {
     const { userPostId } = useParams();
     const highlightedPost = [userPosts.find(post => post._id === userPostId)];
    
@@ -28,14 +29,16 @@ console.log(messages, "!!!!")
         );
     } else {
 
-        return <div>
+        return <div className="single-user-post">
             <UserPosts
                 userPosts={highlightedPost}
-                userName={userName} />
+                userName={userName}
+                setEditPost={setEditPost} />
+                <SingleMessage messages={messages} />
+                <EditPost editPost={editPost} />
 
         </div>
-        // render edit post option here
-        //   render messages for this particular post here  
+      
     }
 };
 export default SingleUserPostPage;

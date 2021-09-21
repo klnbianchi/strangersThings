@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import StLogo from '../images/stLogo.png'
 import { useHistory} from 'react-router-dom';
+import searchIcon from '../images/searchIcon.png'
 
 const Search = ({allPosts}) => {
   const [keyword, setKeyword] = useState('');
@@ -27,7 +28,7 @@ const Search = ({allPosts}) => {
           id="postSearch"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          placeholder="Search Posts" />
+          placeholder={<img src={searchIcon}/>} />
           <button className="search-button">Search</button>
       </form>
     </div>

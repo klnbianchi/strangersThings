@@ -112,3 +112,4 @@ export async function sendMessage(postId,content, token) {
     throw error;
   }
 }
+

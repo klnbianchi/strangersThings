@@ -6,8 +6,7 @@ import { getToken } from '../auth'
 
 
 
-const UserPosts = ({ userPosts, userName}) => {
-
+const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading }) => {
 
     const { userPostId } = useParams();
     const history = useHistory();
@@ -29,8 +28,7 @@ const UserPosts = ({ userPosts, userName}) => {
 
                                     { e.active
                                         ? <div
-                                        
-                                        className="user-posts">
+                                            className="user-posts">
                                             <h3 className="post-title">{e.title} </h3>
                                             <p className="post-description">{e.description}</p>
                                             <p><span className="post-des-info">Price:</span> {e.price} </p>
@@ -41,12 +39,13 @@ const UserPosts = ({ userPosts, userName}) => {
                                                 userPostId === e._id
                                                     ? <>
                                                         <button
-                                                            className="edit-post-button">
+                                                            className="edit-post-button"
+                                                            onClick={() =>setEditPost(true)}>
                                                             Edit Post
                                                     </button>
                                                         <button
                                                             className="delete-post-button"
-                                                            onClick={async () =>{
+                                                            onClick={async () => {
                                                                 try {
                                                                     const userToken = getToken();
                                                                     const post_ID = userPostId;
@@ -55,7 +54,7 @@ const UserPosts = ({ userPosts, userName}) => {
                                                                 } catch (err) {
                                                                     console.log(err)
                                                                 }
-                                                            } }>
+                                                            }}>
                                                             Delete Post
                                                     </button>
                                                     </>
