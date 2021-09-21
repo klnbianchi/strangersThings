@@ -13,7 +13,7 @@ const DropdownMenu = (props) => {
         const pageClickEvent = (e) => {
             if (dropdownRef.current !== null && !dropdownRef.current.contains(e.target)) {
                 setIsActive(!isActive);
-            }
+              }
         };
 
         if (isActive) {
@@ -24,17 +24,17 @@ const DropdownMenu = (props) => {
         }
     }, [isActive]);
 
-    return (
-        <div className="menu-container">
-            <Link to="/profile" onClick={onClick} className="nav-link">PROFILE</Link>
-            <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
-                <ul>
-                    <li><Link to="/profile/messages">Messages</Link></li>
-                    <li><Link to="/profile/userposts">My Posts</Link></li>
-                </ul>
-            </nav>
-        </div>
-    );
-};
+return (
+    <div className="menu-container">
+        <Link to="/profile" onClick={onClick} className="nav-link">PROFILE</Link>
+        <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
+            <ul>
+                <li><Link to="/profile/messages">Messages</Link></li>
+                <li><Link to="/profile/userposts">My Posts</Link></li>
+            </ul>
+        </nav>
+    </div>
+);
+    };
 
 export default DropdownMenu;

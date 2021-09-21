@@ -25,6 +25,8 @@ import {
   Messages,
   SinglePostPage,
   SendMessage,
+  SingleUserPostPage
+ 
 } from "./components"
 
 const App = () => {
@@ -103,6 +105,13 @@ const App = () => {
             userPosts={userPosts}
             userName={userName} />
         </Route>
+        <Route path="/profile/userposts/:userPostId">
+          <SingleUserPostPage 
+          userPosts={userPosts}
+          userName={userName}
+
+         />
+         </Route>
         <Route exact path="/">
           <Header />
         </Route>

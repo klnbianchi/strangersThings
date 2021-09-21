@@ -10,3 +10,4 @@ export { default as CreatePost } from './CreatePost';
 export { default as UserPosts } from './UserPosts';
 export { default as DropdownMenu } from './DropdownMenu';
 export { default as SendMessage} from './SendMessage';
+export { default as SingleUserPostPage } from './SingleUserPostPage';
