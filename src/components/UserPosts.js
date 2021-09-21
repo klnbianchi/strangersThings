@@ -4,7 +4,7 @@ import { fetchUserData } from '../api';
 import { getToken } from '../auth'
 
 
-const UserPosts = ({ userPosts, userName}) => {
+const UserPosts = ({ userPosts, userName }) => {
     const { userPostId } = useParams();
 
     const deletePost = async () => {
@@ -25,32 +25,37 @@ const UserPosts = ({ userPosts, userName}) => {
                     userPosts
                         ? userPosts.map(e => {
                             return (
-                                <div
-                                    key={e._id}
-                                    className="user-posts">
-                                    <h3 className="post-title">{e.title} </h3>
-                                    <p className="post-description">{e.description}</p>
-                                    <p><span className="post-des-info">Price:</span> {e.price} </p>
-                                    <p><span className="post-des-info">Location:</span> {e.location} </p>
-                                    <p><span className="post-des-info">Willing to Deliver?:</span> {e.willDeliver ? "Yes" : "No"} </p>
-                                    {
-                                        userPostId === e._id
-                                            ? <>
-                                                <button
-                                                    className="edit-post-button">
-                                                    Edit Post
+                                <>
+                                    { e.active
+                                        ? <div
+                                        key={e._id}
+                                        className="user-posts">
+                                            <h3 className="post-title">{e.title} </h3>
+                                            <p className="post-description">{e.description}</p>
+                                            <p><span className="post-des-info">Price:</span> {e.price} </p>
+                                            <p><span className="post-des-info">Location:</span> {e.location} </p>
+                                            <p><span className="post-des-info">Willing to Deliver?:</span> {e.willDeliver ? "Yes" : "No"} </p>
+
+                                            {
+                                                userPostId === e._id
+                                                    ? <>
+                                                        <button
+                                                            className="edit-post-button">
+                                                            Edit Post
                                                     </button>
-                                                <button
-                                                    className="delete-post-button"
-                                                    onClick={() => deletePost}>
-                                                    Delete Post
+                                                        <button
+                                                            className="delete-post-button"
+                                                            onClick={() => deletePost}>
+                                                            Delete Post
                                                     </button>
-                                            </>
-                                            : <Link to={`/profile/userposts/${e._id}`}><button className="edit-post-button">View Post</button></Link>
+                                                    </>
+                                                    : <Link to={`/profile/userposts/${e._id}`}><button className="edit-post-button">View Post</button></Link>
 
 
-                                    }
-                                </div>
+                                            }
+                                        </div>
+                                        : null}
+                                </>
                             )
                         })
                         : <h2>You have not created any posts</h2>
