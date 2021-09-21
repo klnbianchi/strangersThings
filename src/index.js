@@ -25,8 +25,9 @@ import {
   Messages,
   SinglePostPage,
   SendMessage,
-  SingleUserPostPage
- 
+  SingleUserPostPage,
+  SearchResultsPage
+
 } from "./components"
 
 const App = () => {
@@ -35,7 +36,8 @@ const App = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [userName, setUserName] = useState('');
   const [allPosts, setAllPosts] = useState([]);
-  const [post, setPost]=useState([]);
+  const [messages, setMessages] = useState([]);
+ 
 
   useEffect(async () => {
     const posts = await fetchAllPosts();
@@ -46,7 +48,18 @@ const App = () => {
     const userToken = getToken();
     const userInfo = await fetchUserData(userToken);
     setUserPosts(userInfo.posts);
-    setUserName(userInfo.username)
+    setUserName(userInfo.username);
+
+    const postArr = userInfo.posts;
+    let userMessages
+
+    for (let i = 0; i < postArr.length; i++) {
+      if (postArr[i].messages.length) {
+        userMessages = [...postArr[i].messages]
+      }
+    }
+    setMessages(userMessages);
+    console.log(userMessages)
   }, []);
 
   return (
@@ -67,7 +80,11 @@ const App = () => {
       <Switch>
         <Route path="/posts/:postId">
           <SinglePostPage allPosts={allPosts}
-         />
+          />
+          </Route>
+           <Route exact path="/posts/searchresults">
+          <SearchResultsPage allPosts={allPosts}
+          />
         </Route>
         <Route exact path="/posts">
           <Posts allPosts={allPosts}
@@ -106,12 +123,13 @@ const App = () => {
             userName={userName} />
         </Route>
         <Route path="/profile/userposts/:userPostId">
-          <SingleUserPostPage 
-          userPosts={userPosts}
-          userName={userName}
+          <SingleUserPostPage
+            userPosts={userPosts}
+            userName={userName}
+            messages={messages}
 
-         />
-         </Route>
+          />
+        </Route>
         <Route exact path="/">
           <Header />
         </Route>

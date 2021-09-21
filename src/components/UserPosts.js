@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { fetchUserData } from '../api';
+import { Link, useParams, useHistory } from 'react-router-dom';
+import { fetchUserData, deletePost } from '../api';
 import { getToken } from '../auth'
+
 
 
 const UserPosts = ({ userPosts, userName }) => {
     const { userPostId } = useParams();
+    const history = useHistory();
 
-    const deletePost = async () => {
-        try {
-            const userToken = getToken();
-            const post_ID = userPostId;
-            const emptyPostObj = await deletePost(userToken, post_ID);
-        } catch (err) {
-            console.log(err)
-        }
+    const handleClick = () => {
+        history.push('/profile/userposts');
     }
 
     return (
@@ -25,10 +21,10 @@ const UserPosts = ({ userPosts, userName }) => {
                     userPosts
                         ? userPosts.map(e => {
                             return (
-                                <>
+                                <div key={e._id}>
                                     { e.active
                                         ? <div
-                                        key={e._id}
+                                        
                                         className="user-posts">
                                             <h3 className="post-title">{e.title} </h3>
                                             <p className="post-description">{e.description}</p>
@@ -45,7 +41,16 @@ const UserPosts = ({ userPosts, userName }) => {
                                                     </button>
                                                         <button
                                                             className="delete-post-button"
-                                                            onClick={() => deletePost}>
+                                                            onClick={async () =>{
+                                                                try {
+                                                                    const userToken = getToken();
+                                                                    const post_ID = userPostId;
+                                                                    const emptyPostObj = await deletePost(userToken, post_ID);
+                                                                    handleClick();
+                                                                } catch (err) {
+                                                                    console.log(err)
+                                                                }
+                                                            } }>
                                                             Delete Post
                                                     </button>
                                                     </>
@@ -55,7 +60,7 @@ const UserPosts = ({ userPosts, userName }) => {
                                             }
                                         </div>
                                         : null}
-                                </>
+                                </div>
                             )
                         })
                         : <h2>You have not created any posts</h2>
