@@ -13,3 +13,4 @@ export { default as SendMessage} from './SendMessage';
 export { default as SingleUserPostPage } from './SingleUserPostPage';
 export { default as Search } from './Search';
 export { default as SearchResultsPage } from './SearchResultsPage';
+export { default as EditPost} from './EditPost';

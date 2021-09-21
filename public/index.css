@@ -418,3 +418,11 @@ width:100%;
   font-size: 15px;
   height: 40px;
 }
+
+.show{
+  display: unset;
+}
+
+.hide{
+  display:none;
+}
