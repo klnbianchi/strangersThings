@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link, Route, Switch  } from 'react-router-dom'
 
-const Profile = (props) => {
+const Profile = ({userPosts, userName}) => {
   return (
-    <div>
-      <h1>profile</h1>
+    <div className='profile-outer'>
+   <h2>{userName}'s Profile</h2>
     </div>
   )
 }

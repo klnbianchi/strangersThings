@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { loginUser } from '../api'
+import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import { loginUser } from '../api';
 import { storeToken } from '../auth';
+import StLogo from '../images/stLogo.png'
+import Register from './Register'
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const { setIsLoggedin, setIsLoading } = props;
+    const history = useHistory();
+
+    const handleClick = () => {
+        history.push('/profile');
+    }
 
     return (
         <div className="login">
+            <img className="st-logo-h2" src={StLogo}/>
             <h2>Log-in to your account</h2>
             <form
                 className="login-form"
@@ -17,9 +27,11 @@ const Login = ({ setIsLoggedIn }) => {
                     try {
                         const results = await loginUser(username, password);
                         storeToken(results.data.token)
-                        setIsLoggedIn(true);
+                        setIsLoggedin(true);
                         setUsername('');
                         setPassword('');
+                        handleClick();
+                
                     } catch (err) {
                         console.log(err)
                     } finally {
@@ -43,8 +55,7 @@ const Login = ({ setIsLoggedIn }) => {
 
                 <button>Login</button>
             </form>
-
-            <p>Don't have an account? <a href="./">Sign Up</a></p>
+            <p>Don't have an account? <Link className='signup-link' to="/login/register">Sign Up</Link></p>
         </div>
     )
 }
