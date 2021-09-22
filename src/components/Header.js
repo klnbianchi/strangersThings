@@ -4,6 +4,7 @@ import Register from './Register'
 
 const Header = ({ isLoggedIn, userName }) => {
   return (
+
     <div>
       {
         !isLoggedIn
@@ -20,6 +21,7 @@ const Header = ({ isLoggedIn, userName }) => {
             <h2>{userName}!</h2>
             </div>
       }
+
 
 
     </div>
