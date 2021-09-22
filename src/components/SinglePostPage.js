@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { SinglePost } from './';
 import SendMessage from './SendMessage';
 
 
-const SinglePostPage = ({ allPosts}) => {
+const SinglePostPage = ({ allPosts, userId, isLoggedIn }) => {
     const { postId } = useParams();
-    const highlightedPost =[allPosts.find(post => post._id === postId)] 
+    const highlightedPost = [allPosts.find(post => post._id === postId)]
+    const postAuthor = highlightedPost[0].author._id;
 
     const myPost = allPosts.find((post) => {
         if (post._id === postId) {
@@ -22,16 +23,28 @@ const SinglePostPage = ({ allPosts}) => {
                 <h3> the post with id {postId} was not found</h3>
             </div>
         );
-    }else{
-        
-return <div>
-    <SinglePost allPosts={highlightedPost} />
-   
-    <SendMessage userName={highlightedPost[0].author.username} />
-</div>
+    } else {
+
+        return <div>
+            <SinglePost allPosts={highlightedPost} />
+            {isLoggedIn ?
+                <>
+                    {
+                        postAuthor !== userId
+                            ? <SendMessage userName={highlightedPost[0].author.username} />
+                            : null
+                    }
+                </>
+
+                : null
+
+
+            }
+        </div>
     }
 
-    
+
 };
 
 export default SinglePostPage;
+

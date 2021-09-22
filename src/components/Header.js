@@ -1,5 +1,6 @@
 import React from 'react';
 import StLogoHorizontal from '../images/st-horizontal.png'
+import Register from './Register'
 
 const Header = ({ isLoggedIn, userName }) => {
   return (
@@ -9,10 +10,14 @@ const Header = ({ isLoggedIn, userName }) => {
           ? <div className="welcome-header">
             <h1>Welcome to</h1>
             <img className="welcome-logo" src={StLogoHorizontal}/>
-            <p>Please login to add posts and contact sellers</p>
+            <div className="welcome-body">
+            <Register />
+            </div>
           </div>
           : <div className="welcome-header">
-            <h1>Welcome {userName}!</h1>
+             <h1>Welcome to</h1>
+            <img className="welcome-logo" src={StLogoHorizontal}/>
+            <h2>{userName}!</h2>
             </div>
       }
 
