@@ -4,13 +4,15 @@ import CreatePost from './CreatePost'
 import SinglePost from './SinglePost';
 import Search from './Search'
 
-const Posts = ({allPosts}) => {
-    
-
+const Posts = ({allPosts, setKeyword, keyword, isLoggedIn}) => {
+ 
     return (
         <div className="posts-main">
              <Search
+             setKeyword={setKeyword}
+             keyword={keyword}
              allPosts={allPosts} />
+
             <div className="posts">
                 <h2>Stranger's Posts</h2>
                 {
@@ -20,7 +22,12 @@ const Posts = ({allPosts}) => {
                 }
             </div>
             <div className="create-post">
-                <CreatePost />
+                {
+                    isLoggedIn
+                    ?<CreatePost />
+                    :null
+                }
+                
             </div>
         </div>
     )

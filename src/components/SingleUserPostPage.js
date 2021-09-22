@@ -4,8 +4,6 @@ import { UserPosts } from './';
 import { SingleMessage } from './'
 import {EditPost} from './'
 
-
-
 const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPost }) => {
     const { userPostId } = useParams();
     const highlightedPost = [userPosts.find(post => post._id === userPostId)];

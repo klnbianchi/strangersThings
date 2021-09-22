@@ -2,11 +2,10 @@ import React, {useState, useEffect} from 'react';
 
 const SingleMessage = ({messages}) => {
  
-  // console.log(messages[0], "from single message component")
   return (
     <div className="user-messages">
    {
-       messages.length
+       messages
        ? messages.map((e)=>{
            <div 
            className="post-message"
@@ -15,7 +14,7 @@ const SingleMessage = ({messages}) => {
                <p>{e.content}</p>
                </div>
        })
-       : <h2>No Messages</h2>
+       : null
    }
    
     </div>

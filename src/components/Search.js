@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import StLogo from '../images/stLogo.png'
-import { useHistory} from 'react-router-dom';
-import searchIcon from '../images/searchIcon.png'
+import StLogo from '../images/stLogo.png';
+import { useHistory } from 'react-router-dom';
 
-const Search = ({allPosts}) => {
-  const [keyword, setKeyword] = useState('');
+const Search = ({ keyword, setKeyword }) => {
   const history = useHistory();
 
   const handleClick = () => {
     history.push('/posts/searchresults');
-}
+  }
 
   return (
     <div className="search-bar-main">
@@ -17,19 +15,21 @@ const Search = ({allPosts}) => {
 
       <form
         className="search-bar"
-        onSubmit={(e) =>{
-        e.preventDefault();
+        onSubmit={(e) => {
+          e.preventDefault();
           handleClick();
-          console.log('submitted')
-        } }>
+        }}>
 
         <input
           type="text"
           id="postSearch"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          placeholder={<img src={searchIcon}/>} />
-          <button className="search-button">Search</button>
+          placeholder="Search Posts" />
+        <button
+          className="material-icons">
+          search
+            </button>
       </form>
     </div>
   )
