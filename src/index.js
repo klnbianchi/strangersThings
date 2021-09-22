@@ -73,8 +73,8 @@ const App = () => {
           <Link className="nav-link" to="/">HOME</Link>
           <Link className="nav-link" to="/posts">POSTS</Link>
           {isLoggedIn
-           ? <DropdownMenu />
-           :null
+            ? <DropdownMenu />
+            : null
           }
 
           <Link className={`nav-link ${!isLoggedIn ? 'show' : 'hide'}`} to="/login">LOGIN</Link>
@@ -144,7 +144,7 @@ const App = () => {
             userPosts={userPosts}
             userName={userName}
             setEditPost={setEditPost}
-
+            editPost={editPost}
           />
         </Route>
         <Route path="/profile/userposts/:userPostId">
@@ -154,6 +154,7 @@ const App = () => {
             messages={messages}
             editPost={editPost}
             setEditPost={setEditPost}
+            isLoggedIn={isLoggedIn}
           />
         </Route>
         <Route exact path="/">

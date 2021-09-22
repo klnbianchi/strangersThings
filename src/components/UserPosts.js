@@ -3,9 +3,6 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { fetchUserData, deletePost } from '../api';
 import { getToken } from '../auth'
 
-
-
-
 const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading }) => {
 
     const { userPostId } = useParams();
@@ -58,7 +55,9 @@ const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading }) => {
                                                             Delete Post
                                                     </button>
                                                     </>
-                                                    : <Link to={`/profile/userposts/${e._id}`}><button className="edit-post-button">View Post</button></Link>
+                                                    : <Link to={`/profile/userposts/${e._id}`}>
+                                                        <button className="edit-post-button">View Post</button>
+                                                    </Link>
 
 
                                             }
