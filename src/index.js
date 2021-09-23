@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import StLogoHorizontal from './images/st-horizontal.png'
-import { fetchAllPosts, fetchUserData, fetchAllMessages } from './api'
-import { getToken } from './auth'
+import { fetchAllPosts, fetchUserData } from './api'
+import { clearCurrentUser, getToken } from './auth'
 
 import {
   BrowserRouter as Router,
@@ -40,7 +40,8 @@ const App = () => {
   const [keyword, setKeyword] = useState('');
   const [userId, setUserId] = useState('');
   const history = useHistory();
-
+  const auth=getToken();
+  
   const handleClick = () => {
     history.push('/login');
   }
@@ -48,6 +49,7 @@ const App = () => {
   useEffect(async () => {
     const posts = await fetchAllPosts();
     setAllPosts(posts);
+    console.log("running")
   }, []);
 
   useEffect(async () => {
@@ -72,18 +74,19 @@ const App = () => {
         <section className="nav-bar-links">
           <Link className="nav-link" to="/">HOME</Link>
           <Link className="nav-link" to="/posts">POSTS</Link>
-          {isLoggedIn
+          {auth
             ? <DropdownMenu />
             : null
           }
 
-          <Link className={`nav-link ${!isLoggedIn ? 'show' : 'hide'}`} to="/login">LOGIN</Link>
-          {console.log(isLoggedIn)}
+          <Link className={`nav-link ${!auth ? 'show' : 'hide'}`} to="/login">LOGIN</Link>
+      
           <Link
-            className={`nav-link ${isLoggedIn ? 'show' : 'hide'}`}
+            className={`nav-link ${auth ? 'show' : 'hide'}`}
             to="/login"
             onClick={() => {
-              setIsLoggedin(false)
+              setIsLoggedin(false);
+              clearCurrentUser();
             }}>
             LOGOUT
             </Link>
@@ -111,13 +114,15 @@ const App = () => {
             keyword={keyword}
             setKeyword={setKeyword}
             isLoggedIn={isLoggedIn}
+            setAllPosts={setAllPosts}
           />
         </Route>
 
         <Route exact path="/login">
           <Login
             setIsLoggedin={setIsLoggedin}
-            setIsLoading={setIsLoading} />
+            setIsLoading={setIsLoading}
+             />
         </Route>
         <Route path="/login/register">
           <Register
@@ -145,6 +150,7 @@ const App = () => {
             userName={userName}
             setEditPost={setEditPost}
             editPost={editPost}
+            setUserPosts={setUserPosts}
           />
         </Route>
         <Route path="/profile/userposts/:userPostId">

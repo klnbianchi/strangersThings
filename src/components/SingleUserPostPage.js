@@ -3,14 +3,13 @@ import { useParams, } from 'react-router-dom';
 import { UserPosts } from './';
 import { SingleMessage } from './'
 import { EditPost } from './'
+import { getToken } from '../auth'
 
-const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPost, isLoggedIn }) => {
+const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPost }) => {
     const { userPostId } = useParams();
     const highlightedPost = [userPosts.find(post => post._id === userPostId)];
+    const auth = getToken();
 
-    useEffect(() => {
-        console.log(messages, "!!!!")
-    }, [])
     const myPost = userPosts.find((post) => {
         if (post._id === userPostId) {
             return true;
@@ -28,7 +27,7 @@ const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPo
     } else {
 
         return <div className="single-user-post">
-            {isLoggedIn
+            {auth
                 ? <>
                     <UserPosts
                         userPosts={highlightedPost}
