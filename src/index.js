@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import StLogoHorizontal from './images/st-horizontal.png'
-import { fetchAllPosts, fetchUserData } from './api'
+import { fetchAllPosts, fetchUserData, fetchAllMessages } from './api'
 import { getToken } from './auth'
 
 import {
@@ -11,7 +10,8 @@ import {
   Switch,
   Redirect,
   Link,
-  useParams
+  useParams,
+  useHistory
 } from 'react-router-dom'
 
 import {
@@ -25,8 +25,8 @@ import {
   Messages,
   SinglePostPage,
   SendMessage,
-  SingleUserPostPage
- 
+  SingleUserPostPage,
+  SearchResultsPage
 } from "./components"
 
 const App = () => {
@@ -35,7 +35,15 @@ const App = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [userName, setUserName] = useState('');
   const [allPosts, setAllPosts] = useState([]);
-  const [post, setPost]=useState([]);
+  const [messages, setMessages] = useState([]);
+  const [editPost, setEditPost] = useState(false);
+  const [keyword, setKeyword] = useState('');
+  const [userId, setUserId] = useState('');
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/login');
+  }
 
   useEffect(async () => {
     const posts = await fetchAllPosts();
@@ -43,10 +51,16 @@ const App = () => {
   }, []);
 
   useEffect(async () => {
-    const userToken = getToken();
-    const userInfo = await fetchUserData(userToken);
-    setUserPosts(userInfo.posts);
-    setUserName(userInfo.username)
+    try {
+      const userToken = getToken();
+      const userInfo = await fetchUserData(userToken);
+      setUserPosts(userInfo.posts);
+      setUserName(userInfo.username);
+      setMessages(userInfo.messages);
+      setUserId(userInfo._id);
+    } catch (err) {
+      console.log(err)
+    }
   }, []);
 
   return (
@@ -58,19 +72,45 @@ const App = () => {
         <section className="nav-bar-links">
           <Link className="nav-link" to="/">HOME</Link>
           <Link className="nav-link" to="/posts">POSTS</Link>
-          <DropdownMenu />
-          <Link className="nav-link" to="/login"> {isLoggedIn ? 'LOGOUT' : 'LOGIN'} </Link>
+          {isLoggedIn
+            ? <DropdownMenu />
+            : null
+          }
+
+          <Link className={`nav-link ${!isLoggedIn ? 'show' : 'hide'}`} to="/login">LOGIN</Link>
           {console.log(isLoggedIn)}
+          <Link
+            className={`nav-link ${isLoggedIn ? 'show' : 'hide'}`}
+            to="/login"
+            onClick={() => {
+              setIsLoggedin(false)
+            }}>
+            LOGOUT
+            </Link>
         </section>
       </nav>
 
       <Switch>
-        <Route path="/posts/:postId">
-          <SinglePostPage allPosts={allPosts}
-         />
+        <Route exact path="/posts/searchresults">
+          <SearchResultsPage
+            allPosts={allPosts}
+            keyword={keyword}
+          />
         </Route>
+
+        <Route exact path="/posts/:postId">
+          <SinglePostPage
+            allPosts={allPosts}
+            userId={userId}
+            isLoggedIn={isLoggedIn}
+          />
+        </Route>
+
         <Route exact path="/posts">
           <Posts allPosts={allPosts}
+            keyword={keyword}
+            setKeyword={setKeyword}
+            isLoggedIn={isLoggedIn}
           />
         </Route>
 
@@ -95,25 +135,32 @@ const App = () => {
           <Messages
             setIsLoggedin={setIsLoggedin}
             setIsLoading={setIsLoading}
-            userPosts={userPosts}
-            userName={userName} />
+            messages={messages} />
         </Route>
         <Route exact path="/profile/userposts">
           <UserPosts
             setIsLoggedin={setIsLoggedin}
             setIsLoading={setIsLoading}
             userPosts={userPosts}
-            userName={userName} />
+            userName={userName}
+            setEditPost={setEditPost}
+            editPost={editPost}
+          />
         </Route>
         <Route path="/profile/userposts/:userPostId">
-          <SingleUserPostPage 
-          userPosts={userPosts}
-          userName={userName}
-
-         />
-         </Route>
+          <SingleUserPostPage
+            userPosts={userPosts}
+            userName={userName}
+            messages={messages}
+            editPost={editPost}
+            setEditPost={setEditPost}
+            isLoggedIn={isLoggedIn}
+          />
+        </Route>
         <Route exact path="/">
-          <Header />
+          <Header
+            isLoggedIn={isLoggedIn}
+            userName={userName} />
         </Route>
       </Switch>
     </div>

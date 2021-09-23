@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {SingleMessage} from './'
 
-const Messages = (props) => {
+const Messages = ({messages}) => {
+
   return (
     <div className='user-messages'>
-   <h1>render messages sent to the user here</h1>
-   
+   {
+     messages
+     ? <SingleMessage messages={messages} />
+     : <div className="messages-page">
+       <h2>You have not sent or received any messages.</h2>
+       </div>
+   }
     </div>
   )
 }
