@@ -6,7 +6,7 @@ const Messages = ({messages}) => {
   return (
     <div className='user-messages'>
    {
-     messages
+     messages.length
      ? <SingleMessage messages={messages} />
      : <div className="messages-page">
        <h2>You have not sent or received any messages.</h2>
