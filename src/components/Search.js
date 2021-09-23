@@ -11,7 +11,7 @@ const Search = ({ keyword, setKeyword }) => {
 
   return (
     <div className="search-bar-main">
-      <img className="st-logo-search" src={StLogo} />
+      {/* <img className="st-logo-search" src={StLogo} /> */}
 
       <form
         className="search-bar"

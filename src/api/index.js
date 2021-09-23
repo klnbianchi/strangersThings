@@ -44,6 +44,7 @@ export async function registerUser(username, password) {
 
 export async function createPost(title, description, price, location, willDeliver, token) {
   try {
+    
     const { data } = await axios.post(`${BASE}/posts`,
       {
         post: {
@@ -54,6 +55,7 @@ export async function createPost(title, description, price, location, willDelive
           willDeliver: willDeliver,
         }
       }, { headers: { Authorization: `Bearer ${token}` } });
+    
     return data
   } catch (error) {
     throw error;

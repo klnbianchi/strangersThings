@@ -1,12 +1,15 @@
 import React from 'react';
 import StLogoHorizontal from '../images/st-horizontal.png'
 import Register from './Register'
+import {getToken} from '../auth'
 
 const Header = ({ isLoggedIn, userName }) => {
+  const auth=getToken();
+
   return (
     <div>
       {
-        !isLoggedIn
+        !auth
           ? <div className="welcome-header">
             <h1>Welcome to</h1>
             <img className="welcome-logo" src={StLogoHorizontal}/>

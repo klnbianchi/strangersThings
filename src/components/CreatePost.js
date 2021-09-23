@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { createPost } from '../api'
 import {getToken} from '../auth'
 
-const CreatePost = (props) => {
-    const [username, setUsername] = useState('');
+const CreatePost = ({setAllPosts, allPosts}) => {
     const [title, setTitle] = useState('');
     const [location, setLocation] = useState('');
     const [price, setPrice] = useState('');
@@ -19,12 +18,17 @@ const CreatePost = (props) => {
                     e.preventDefault();
                     const userToken=getToken();
                     try {
+                        console.log(userToken)
                         const results = await createPost(title, description, price, location, willDeliver, userToken);
                         setTitle('');
                         setDescription('');
                         setPrice('');
                         setLocation('');
-                        willDeliver(false);
+                        setWillDeliver(false);
+                        const allPostsCopy=allPosts.slice();
+                        allPostsCopy.push(results.data.post)
+                        setAllPosts(allPostsCopy)
+                        
                     } catch (err) {
                         console.log(err)
                     } finally {
