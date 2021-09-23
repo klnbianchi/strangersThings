@@ -14,6 +14,9 @@ import {
   useHistory
 } from 'react-router-dom'
 
+<<<<<<< HEAD
+import {Post, Login, Register } from "./components"
+=======
 import {
   Posts,
   Header,
@@ -28,6 +31,7 @@ import {
   SingleUserPostPage,
   SearchResultsPage
 } from "./components"
+>>>>>>> f72a03ff61f7083bac2ac1387ab939f0ad69878d
 
 const App = () => {
   const [isLoggedIn, setIsLoggedin] = useState(false);
