@@ -3,7 +3,10 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { fetchUserData, deletePost } from '../api';
 import { getToken } from '../auth'
 
-const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading}) => {
+
+const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading }) => {
+
+
     const { userPostId } = useParams();
     const history = useHistory();
 
@@ -19,7 +22,9 @@ const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading}) => {
                     userPosts
                         ? userPosts.map(e => {
                             return (
+
                                 <div key={e._id}>
+
                                     { e.active
                                         ? <div
                                             className="user-posts">
@@ -58,7 +63,9 @@ const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading}) => {
                                             }
                                         </div>
                                         : null}
+
                                 </div>
+
                             )
                         })
                         : <h2>You have not created any posts</h2>
