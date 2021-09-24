@@ -16,3 +16,4 @@ export { default as SingleUserPostPage } from './SingleUserPostPage';
 export { default as Search } from './Search';
 export { default as SearchResultsPage } from './SearchResultsPage';
 export { default as EditPost} from './EditPost';
+export { default as EditAndDeleteButton} from './EditAndDeleteButton';

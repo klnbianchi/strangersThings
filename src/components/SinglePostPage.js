@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { SinglePost } from './';
 import SendMessage from './SendMessage';
+import {getToken} from '../auth'
 
 
-const SinglePostPage = ({ allPosts, userId, isLoggedIn }) => {
+const SinglePostPage = ({ allPosts, userId, setMessages, messages }) => {
     const { postId } = useParams();
     const highlightedPost = [allPosts.find(post => post._id === postId)]
-    const postAuthor = highlightedPost[0].author._id;
+    
+    const auth = getToken();
+    const author=highlightedPost[0].author._id
 
     const myPost = allPosts.find((post) => {
         if (post._id === postId) {
@@ -27,11 +30,14 @@ const SinglePostPage = ({ allPosts, userId, isLoggedIn }) => {
 
         return <div>
             <SinglePost allPosts={highlightedPost} />
-            {isLoggedIn ?
+            {auth ?
                 <>
                     {
-                        postAuthor !== userId
-                            ? <SendMessage userName={highlightedPost[0].author.username} />
+                        author !== userId
+                            ? <SendMessage 
+                            userName={highlightedPost[0].author.username}
+                            setMessages={setMessages}
+                            messages={messages} />
                             : null
                     }
                 </>
@@ -47,4 +53,3 @@ const SinglePostPage = ({ allPosts, userId, isLoggedIn }) => {
 };
 
 export default SinglePostPage;
-

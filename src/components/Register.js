@@ -8,11 +8,9 @@ const Register = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [passwordMatch, setPasswordMatch] = useState(false);
     const [token, setToken] = useState('');
     const history = useHistory();
-    const { setIsLoggedin, setIsLoading } = props;
-
+   
     const handleClick = () => {
         history.push('/profile');
     }

@@ -3,7 +3,8 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { fetchUserData, deletePost } from '../api';
 import { getToken } from '../auth'
 
-const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading }) => {
+const UserPosts = ({ userPosts, userName, setEditPost, setUserPosts }) => {
+
 
     const { userPostId } = useParams();
     const history = useHistory();
@@ -12,9 +13,11 @@ const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading }) => {
         history.push('/profile/userposts');
     }
 
+    // const activePosts = userPosts.filter(post => post.active);
+
     return (
         <div className="user-posts-main">
-            <h2>{userName}'s Posts</h2>
+            
             <div className="user-posts-posts">
                 {
                     userPosts
@@ -37,8 +40,8 @@ const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading }) => {
                                                     ? <>
                                                         <button
                                                             className="edit-post-button"
-                                                            onClick={() =>setEditPost(true)}>
-                                                            Edit Post
+                                                            onClick={() => handleClick()}>
+                                                            Back
                                                     </button>
                                                         <button
                                                             className="delete-post-button"
@@ -58,8 +61,6 @@ const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading }) => {
                                                     : <Link to={`/profile/userposts/${e._id}`}>
                                                         <button className="edit-post-button">View Post</button>
                                                     </Link>
-
-
                                             }
                                         </div>
                                         : null}

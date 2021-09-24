@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { loginUser } from '../api';
-import { storeToken } from '../auth';
+import { storeToken,getToken } from '../auth';
 import StLogo from '../images/stLogo.png'
-import Register from './Register'
 
 const Login = (props) => {
     const [username, setUsername] = useState('');
@@ -28,10 +27,7 @@ const Login = (props) => {
                         const results = await loginUser(username, password);
                         storeToken(results.data.token)
                         setIsLoggedin(true);
-                        setUsername('');
-                        setPassword('');
                         handleClick();
-                
                     } catch (err) {
                         console.log(err)
                     } finally {

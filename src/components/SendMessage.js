@@ -3,7 +3,7 @@ import { getToken } from '../auth';
 import { sendMessage } from '../api'
 import { useParams } from 'react-router-dom'
 
-const SendMessage = ({ userName }) => {
+const SendMessage = ({ userName, setMessages, messages }) => {
     const [content, setContent] = useState([]);
     const { postId } = useParams();
 
@@ -17,6 +17,11 @@ const SendMessage = ({ userName }) => {
                     const userToken = getToken();
                     try {
                         const message = await sendMessage(postId, content, userToken);
+                        console.log(message.data.message)
+
+                        const messagesCopy = messages.slice();
+                        messagesCopy.push(message.data.message)
+                        setMessages(messagesCopy)
                         setContent('');
                     } catch (err) {
                         console.log(err)
