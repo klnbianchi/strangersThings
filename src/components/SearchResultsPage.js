@@ -6,11 +6,14 @@ const SearchResultsPage = ({ allPosts, keyword }) => {
     const title = e.title.toLowerCase();
     const description = e.description.toLowerCase();
     const price = String(e.price);
-    const query = keyword.toLowerCase();
+    const queryArr = keyword.toLowerCase().split(' ');
 
-    if (title.includes(query) || description.includes(query) || price.includes(query)) {
-      return e
+    for(let i=0;i<queryArr.length;i++){
+      if (title.includes(queryArr[i]) || description.includes(queryArr[i]) || price.includes(queryArr[i])) {
+        return e
+      }
     }
+    
   });
 
   return (

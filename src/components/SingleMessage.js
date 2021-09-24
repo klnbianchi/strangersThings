@@ -11,7 +11,7 @@ const SingleMessage = ({messages, userId}) => {
            <div 
            className="post-message"
            key={`message${idx} ${e._id}`}>
-               <h2>Message from: {e.fromUser.username}</h2>
+               <h2>Message from: <span className="post-username">{e.fromUser.username}</span></h2>
                <p>{e.content}</p>
                </div>
          )

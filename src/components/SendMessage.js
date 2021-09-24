@@ -9,7 +9,7 @@ const SendMessage = ({ userName, setMessages, messages }) => {
 
     return (
         <div className="create-post">
-            <h2>Send {userName} a Message</h2>
+            <h2>Send <span className="post-username">{userName}</span> a Message</h2>
             <form
                 className="send-message-form"
                 onSubmit={async (e) => {

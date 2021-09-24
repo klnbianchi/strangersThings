@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, } from 'react-router-dom';
+import { useParams, Link, Route, Switch } from 'react-router-dom';
 import { UserPosts } from './';
 import { SingleMessage } from './'
 import { EditPost } from './'
 import { getToken } from '../auth'
 
-const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPost, setUserPosts }) => {
+const SingleUserPostPage = ({ userPosts, userName, messages, setUserPosts }) => {
     const { userPostId } = useParams();
     const highlightedPost = [userPosts.find(post => post._id === userPostId)];
     const auth = getToken();
@@ -33,22 +33,25 @@ const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPo
     } else {
 
         return <div className="single-user-post">
+             
             {auth
                 ? <>
+                <Link to="/profile/userposts/edit">Edit Post</Link>
                     <div className="single-post">
+                   
                         <UserPosts
                             userPosts={highlightedPost}
                             userName={userName}
-                            setEditPost={setEditPost}
                             setUserPosts={setUserPosts} />
+                           
                     </div>
-                    <div className="edit-post-comp">
+                    {/* <div className="edit-post-comp">
                     <EditPost 
                     userPosts={highlightedPost}
                     setUserPosts={setUserPosts} />
-                    </div>
+                    </div> */}
                     <div className="user-messages">
-                        
+                        <h3>Messages</h3>
                         <SingleMessage messages={postMessages} />
                     </div>
 
