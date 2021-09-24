@@ -17,11 +17,13 @@ const Messages = ({ messages, userId }) => {
   });
 
   return (
+
     <div className='messages-main'>
       <div className="messages-links">
        <Link className="m-link" to="/profile/messages/inbox"> <h2><span className="material-icons">inbox</span> Inbox</h2></Link>
        <Link className="m-link" to="/profile/messages/sent"><h2><span className="material-icons">send</span> Sent</h2></Link>
        </div>
+    
        <Switch>
          <Route exact path ="/profile/messages/inbox">
          <div className="received-messages">

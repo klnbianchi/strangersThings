@@ -7,6 +7,7 @@ const SingleMessage = ({messages, userId}) => {
    {
        messages.length
        ? messages.map((e, idx)=>{
+
          return (
            <div 
            className="post-message"

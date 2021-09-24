@@ -5,6 +5,7 @@ import { getToken } from '../auth'
 
 const UserPosts = ({ userPosts, userName, setEditPost, setUserPosts }) => {
 
+
     const { userPostId } = useParams();
     const history = useHistory();
 
