@@ -16,10 +16,12 @@ const Posts = ({ allPosts, setKeyword, keyword, isLoggedIn, setAllPosts }) => {
 
     return (
         <div className="posts-main">
+            <div className="search-posts">
             <Search
                 setKeyword={setKeyword}
                 keyword={keyword}
                 allPosts={allPosts} />
+                </div>
 
             <div className="posts">
                 <h2>Stranger's Posts</h2>

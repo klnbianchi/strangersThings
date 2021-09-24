@@ -5,10 +5,16 @@ import { SingleMessage } from './'
 import { EditPost } from './'
 import { getToken } from '../auth'
 
-const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPost }) => {
+const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPost, setUserPosts }) => {
     const { userPostId } = useParams();
     const highlightedPost = [userPosts.find(post => post._id === userPostId)];
     const auth = getToken();
+
+    const postMessages = messages.filter(e => {
+        if (e.post._id && e.post._id === userPostId) {
+            return e
+        }
+    });
 
     const myPost = userPosts.find((post) => {
         if (post._id === userPostId) {
@@ -29,12 +35,23 @@ const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPo
         return <div className="single-user-post">
             {auth
                 ? <>
-                    <UserPosts
-                        userPosts={highlightedPost}
-                        userName={userName}
-                        setEditPost={setEditPost} />
-                    <SingleMessage messages={messages} />
-                    <EditPost editPost={editPost} />
+                    <div className="single-post">
+                        <UserPosts
+                            userPosts={highlightedPost}
+                            userName={userName}
+                            setEditPost={setEditPost}
+                            setUserPosts={setUserPosts} />
+                    </div>
+                    <div className="edit-post-comp">
+                    <EditPost 
+                    userPosts={highlightedPost}
+                    setUserPosts={setUserPosts} />
+                    </div>
+                    <div className="user-messages">
+                        
+                        <SingleMessage messages={postMessages} />
+                    </div>
+
                 </>
                 : null
             }
@@ -42,3 +59,4 @@ const SingleUserPostPage = ({ userPosts, userName, messages, editPost, setEditPo
     }
 };
 export default SingleUserPostPage;
+

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import StLogo from '../images/stLogo.png';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 const Search = ({ keyword, setKeyword }) => {
@@ -11,8 +10,7 @@ const Search = ({ keyword, setKeyword }) => {
 
   return (
     <div className="search-bar-main">
-      {/* <img className="st-logo-search" src={StLogo} /> */}
-
+    
       <form
         className="search-bar"
         onSubmit={(e) => {

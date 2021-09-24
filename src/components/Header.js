@@ -7,6 +7,7 @@ const Header = ({ isLoggedIn, userName }) => {
   const auth=getToken();
 
   return (
+
     <div>
       {
         !auth
@@ -23,6 +24,7 @@ const Header = ({ isLoggedIn, userName }) => {
             <h2>{userName}!</h2>
             </div>
       }
+
 
 
     </div>

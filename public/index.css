@@ -18,6 +18,11 @@ body {
   align-items: center;
   height: 100%;
 }
+
+h3{
+  color: #84a98c;
+  font-weight: 600;
+}
 /* navbar */
 .nav-bar {
   display: flex;
@@ -32,7 +37,7 @@ body {
   margin-left: 2.5em;
 }
 
-.logo-horizontal{
+.logo-horizontal {
   height: 14px;
 }
 
@@ -51,7 +56,9 @@ body {
 .nav-link:last-child {
   margin-right: 2.5em;
 }
+
 /* home page */
+
 .welcome-header {
   display: flex;
   flex-direction: column;
@@ -60,23 +67,25 @@ body {
   text-align: center;
 }
 
-.welcome-header>h1,h2{
+.welcome-header>h1, h2 {
   color: #354f52;
   font-weight: 600;
 }
 
-.welcome-logo{
+.welcome-logo {
   height: 30px;
- margin:8px;
+  margin: 8px;
 }
 
-.welcome-body{
-  display:flex;
+.welcome-body {
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 400px;
 }
+
 /* login page */
+
 .login {
   display: flex;
   flex-direction: column;
@@ -115,11 +124,19 @@ body {
   border-radius: 2px;
   padding: 10px;
 }
+
 /* general post page */
+
 .posts-main {
   display: grid;
   grid-template-columns: 2fr 1fr;
+  grid-template-rows: 100px 1fr;
   grid-gap: 2em;
+}
+
+.search-posts {
+  grid-row: 1;
+  grid-column: 1/span 2;
 }
 
 .posts {
@@ -130,11 +147,12 @@ body {
   justify-content: center;
 }
 
-.posts>h2{
+.posts>h2 {
   color: #2f3e46;
   font-weight: 600;
   margin-left: 1.5em;
 }
+
 .post-title {
   margin-bottom: 5px;
   color: #354f52;
@@ -203,7 +221,7 @@ body {
 .user-posts {
   background-color: white;
   margin: 1.5em;
-  padding: 15px;
+  padding: 25px;
   border-bottom: 1px solid lightgrey;
 }
 
@@ -224,6 +242,8 @@ body {
   padding: 15px;
 }
 
+/* messages */
+
 .messages {
   grid-row: 1;
   grid-column: 1;
@@ -238,7 +258,42 @@ body {
   align-items: center;
 }
 
-.profile-greeting {}
+.messages-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin: 1.5em;
+}
+
+.m-link{
+  text-decoration: none;
+  padding:10px;
+}
+
+.m-link h2:hover{
+  color:#84a98c;
+}
+
+.messages-links{
+margin-right: 3.5em;
+margin-top: 1.2em;
+}
+
+.received-messages, .sent-messages {
+  /* margin: 2em; */
+  padding: 10px;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+}
+
+.received-messages h2, .sent-messages h2 {
+  color: #2f3e46;
+  font-weight: 600;
+}
+
+/* create post */
 
 .create-post-form {
   display: flex;
@@ -410,7 +465,6 @@ body {
 }
 
 .search-bar-main {
-  grid-row: 1;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -447,9 +501,10 @@ body {
   height: 40px;
 }
 
-.material-icons{
+.material-icons {
   font-family: 'Material Icons';
 }
+
 .show {
   display: unset;
 }
@@ -457,13 +512,48 @@ body {
 .hide {
   display: none;
 }
-/* edit post */
-.single-user-post{
+
+/* single user post page */
+
+.single-user-post {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
   grid-gap: 2em;
 }
+
+.single-post {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.edit-post-comp {
+  grid-column: 2;
+  grid-row: 1;
+  margin-top: 1em;
+}
+
+.user-messages {
+  grid-column: 1/span 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-message {
+  padding: 15px;
+  margin-bottom: 1em;
+  border-bottom: 1px solid lightgray;
+  background-color: white;
+  -webkit-box-shadow: 1px 5px 15px -6px #000000;
+  box-shadow: 1px 5px 15px -6px #000000;
+  /* filter: drop-shadow(2px 5px 6px #354F52); */
+}
+
+/* edit post */
 
 .edit-post {
   grid-column: 2;
@@ -475,7 +565,7 @@ body {
   margin: 1.5em;
 }
 
-.edit-post>h2{
+.edit-post>h2 {
   color: #2f3e46;
   font-weight: 600;
 }

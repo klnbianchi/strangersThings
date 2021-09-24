@@ -40,8 +40,8 @@ const App = () => {
   const [keyword, setKeyword] = useState('');
   const [userId, setUserId] = useState('');
   const history = useHistory();
-  const auth=getToken();
-  
+  const auth = getToken();
+
   const handleClick = () => {
     history.push('/login');
   }
@@ -49,7 +49,6 @@ const App = () => {
   useEffect(async () => {
     const posts = await fetchAllPosts();
     setAllPosts(posts);
-    console.log("running")
   }, []);
 
   useEffect(async () => {
@@ -80,7 +79,7 @@ const App = () => {
           }
 
           <Link className={`nav-link ${!auth ? 'show' : 'hide'}`} to="/login">LOGIN</Link>
-      
+
           <Link
             className={`nav-link ${auth ? 'show' : 'hide'}`}
             to="/login"
@@ -106,6 +105,8 @@ const App = () => {
             allPosts={allPosts}
             userId={userId}
             isLoggedIn={isLoggedIn}
+            setMessages={setMessages}
+            messages={messages}
           />
         </Route>
 
@@ -122,7 +123,7 @@ const App = () => {
           <Login
             setIsLoggedin={setIsLoggedin}
             setIsLoading={setIsLoading}
-             />
+          />
         </Route>
         <Route path="/login/register">
           <Register
@@ -140,7 +141,8 @@ const App = () => {
           <Messages
             setIsLoggedin={setIsLoggedin}
             setIsLoading={setIsLoading}
-            messages={messages} />
+            messages={messages}
+            userId={userId} />
         </Route>
         <Route exact path="/profile/userposts">
           <UserPosts
@@ -161,6 +163,7 @@ const App = () => {
             editPost={editPost}
             setEditPost={setEditPost}
             isLoggedIn={isLoggedIn}
+            setUserPosts={setUserPosts}
           />
         </Route>
         <Route exact path="/">

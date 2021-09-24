@@ -3,7 +3,8 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { fetchUserData, deletePost } from '../api';
 import { getToken } from '../auth'
 
-const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading}) => {
+const UserPosts = ({ userPosts, userName, setEditPost, setUserPosts }) => {
+
     const { userPostId } = useParams();
     const history = useHistory();
 
@@ -11,15 +12,19 @@ const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading}) => {
         history.push('/profile/userposts');
     }
 
+    // const activePosts = userPosts.filter(post => post.active);
+
     return (
         <div className="user-posts-main">
-            <h2>{userName}'s Posts</h2>
+            
             <div className="user-posts-posts">
                 {
                     userPosts
                         ? userPosts.map(e => {
                             return (
+
                                 <div key={e._id}>
+
                                     { e.active
                                         ? <div
                                             className="user-posts">
@@ -34,8 +39,8 @@ const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading}) => {
                                                     ? <>
                                                         <button
                                                             className="edit-post-button"
-                                                            onClick={() =>setEditPost(true)}>
-                                                            Edit Post
+                                                            onClick={() => handleClick()}>
+                                                            Back
                                                     </button>
                                                         <button
                                                             className="delete-post-button"
@@ -58,7 +63,9 @@ const UserPosts = ({ userPosts, userName, setEditPost, setIsLoading}) => {
                                             }
                                         </div>
                                         : null}
+
                                 </div>
+
                             )
                         })
                         : <h2>You have not created any posts</h2>

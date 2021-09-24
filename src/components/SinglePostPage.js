@@ -5,7 +5,7 @@ import SendMessage from './SendMessage';
 import {getToken} from '../auth'
 
 
-const SinglePostPage = ({ allPosts, userId, isLoggedIn }) => {
+const SinglePostPage = ({ allPosts, userId, setMessages, messages }) => {
     const { postId } = useParams();
     const highlightedPost = [allPosts.find(post => post._id === postId)]
     
@@ -34,7 +34,10 @@ const SinglePostPage = ({ allPosts, userId, isLoggedIn }) => {
                 <>
                     {
                         author !== userId
-                            ? <SendMessage userName={highlightedPost[0].author.username} />
+                            ? <SendMessage 
+                            userName={highlightedPost[0].author.username}
+                            setMessages={setMessages}
+                            messages={messages} />
                             : null
                     }
                 </>

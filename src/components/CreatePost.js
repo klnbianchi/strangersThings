@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { createPost } from '../api'
-import {getToken} from '../auth'
+import { getToken } from '../auth'
 
-const CreatePost = ({setAllPosts, allPosts}) => {
+const CreatePost = ({ setAllPosts, allPosts }) => {
     const [title, setTitle] = useState('');
     const [location, setLocation] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [willDeliver, setWillDeliver] = useState(false);
-   
+
     return (
         <div className="create-post">
             <h2>Add a New Listing </h2>
@@ -16,19 +16,23 @@ const CreatePost = ({setAllPosts, allPosts}) => {
                 className="create-post-form"
                 onSubmit={async (e) => {
                     e.preventDefault();
-                    const userToken=getToken();
+                    const userToken = getToken();
                     try {
-                        console.log(userToken)
-                        const results = await createPost(title, description, price, location, willDeliver, userToken);
+                        !title ? alert('Post titles are required. Please enter a title') : null;
+                        !description ? alert('Please enter a description') : null;
+                        const userLocation = location ? location : "[On Request]";
+                        const userPrice = price ? price : "Free";
+                        const results = await createPost(title, description, userPrice, userLocation, willDeliver, userToken);
                         setTitle('');
                         setDescription('');
                         setPrice('');
                         setLocation('');
                         setWillDeliver(false);
-                        const allPostsCopy=allPosts.slice();
+
+                        const allPostsCopy = allPosts.slice();
                         allPostsCopy.push(results.data.post)
                         setAllPosts(allPostsCopy)
-                        
+
                     } catch (err) {
                         console.log(err)
                     } finally {
