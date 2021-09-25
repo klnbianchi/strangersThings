@@ -4,6 +4,7 @@ import { UserPosts } from './';
 import { SingleMessage } from './'
 import { EditPost } from './'
 import { getToken } from '../auth'
+import DeleteButton from './DeleteButton';
 
 const SingleUserPostPage = ({ userPosts, userName, messages, setUserPosts }) => {
     const { userPostId } = useParams();
@@ -40,15 +41,19 @@ const SingleUserPostPage = ({ userPosts, userName, messages, setUserPosts }) => 
     } else {
 
         return <div className="single-user-post">
-             
+           
             {auth
                 ? <>
                     <div className="single-post">
-                   
                         <UserPosts
                             userPosts={highlightedPost}
                             userName={userName}
                             setUserPosts={setUserPosts} />
+
+                            <DeleteButton 
+                            userPosts={userPosts}
+                            setUserPosts={setUserPosts}
+                            highlightedPost={highlightedPost}/>
                            
                     </div>
                     <div className="edit-post-comp">

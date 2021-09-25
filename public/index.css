@@ -24,6 +24,14 @@ h3 {
   font-weight: 600;
 }
 
+h2 {
+  color: #2f3e46;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+}
 /* navbar */
 
 .nav-bar {
@@ -97,11 +105,6 @@ h3 {
   margin: auto;
 }
 
-.login>h2 {
-  color: #2f3e46;
-  font-weight: 600;
-}
-
 .login-form {
   display: flex;
   flex-direction: column;
@@ -150,9 +153,7 @@ h3 {
 }
 
 .posts>h2 {
-  color: #2f3e46;
-  font-weight: 600;
-  margin-left: 1.5em;
+  margin-left: 1em;
 }
 
 .post-title {
@@ -192,10 +193,15 @@ h3 {
   font-size: 15px;
   color: white;
   margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
 }
 
 .edit-post-button {
   background-color: #52796f;
+
 }
 
 .edit-post-button:hover {
@@ -204,7 +210,7 @@ h3 {
 
 .delete-post-button {
   background-color: #2f3e46;
-  margin-left: 30px;
+  margin-left: 2.8em;
 }
 
 .delete-post-button:hover {
@@ -217,7 +223,7 @@ h3 {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 1.5em;
+  margin: 1.2em;
 }
 
 .user-posts {
@@ -291,14 +297,7 @@ h3 {
   background-color: white;
   border-left: 1px solid lightgray;
 }
-
-.received-messages h2, .sent-messages h2 {
-  color: #2f3e46;
-  font-weight: 600;
-}
-
 /* create post */
-
 .create-post-form {
   display: flex;
   flex-direction: column;
@@ -334,6 +333,10 @@ h3 {
   font-size: 15px;
 }
 
+.create-post-form button:hover{
+background-color: #84a98c;
+}
+
 .post-checkbox {
   display: flex;
   justify-content: center;
@@ -341,13 +344,8 @@ h3 {
   margin: 5px;
 }
 
-.create-post>h2 {
-  color: #2f3e46;
-  font-weight: 600;
-}
-
 .user-posts-main {
-  margin: 2em;
+  margin-top: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -361,7 +359,7 @@ h3 {
 
 .user-posts-posts {
   grid-column: 1;
-  margin: 2em;
+  margin: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -443,11 +441,6 @@ h3 {
   padding: 10px;
   border: 1px solid lightgrey;
   border-radius: 2px;
-}
-
-.send-message-form>h2 {
-  color: #2f3e46;
-  font-weight: 600;
 }
 
 .send-message-form input {
@@ -534,7 +527,9 @@ h3 {
   grid-column: 1;
   grid-row: 1;
   display: flex;
-  align-items: flex-start;
+ flex-direction: column;
+ justify-content: center;
+ align-items: flex-start;
 }
 
 .edit-post-comp {
@@ -578,9 +573,4 @@ h3 {
   justify-content: center;
   align-items: center;
   margin: 1.5em;
-}
-
-.edit-post>h2 {
-  color: #2f3e46;
-  font-weight: 600;
 }
