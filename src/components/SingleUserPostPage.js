@@ -18,11 +18,11 @@ const SingleUserPostPage = ({ userPosts, userName, messages, setUserPosts }) => 
         }
     })];
 
-    // const postMessages = messages.filter(e => {
-    //     if (e.post._id && e.post._id === userPostId) {
-    //         return e
-    //     }
-    // });
+    const postMessages = messages.filter(e => {
+        if (e.post._id && e.post._id === userPostId) {
+            return e
+        }
+    });
 
     const myPost = userPosts.find((post) => {
         if (post._id === userPostId) {
@@ -64,10 +64,10 @@ const SingleUserPostPage = ({ userPosts, userName, messages, setUserPosts }) => 
                     userPostId={userPostId}
                      />
                     </div>
-                    {/* <div className="user-messages">
+                    <div className="user-messages">
                         <h3>Messages</h3>
                         <SingleMessage messages={postMessages} />
-                    </div> */}
+                    </div>
 
                 </>
                 : null

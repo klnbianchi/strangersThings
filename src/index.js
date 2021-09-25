@@ -141,10 +141,10 @@ const App = () => {
         </Route>
         <Route path="/profile/messages">
           <Messages
-            setIsLoggedin={setIsLoggedin}
-            setIsLoading={setIsLoading}
             messages={messages}
-            userId={userId} />
+            userId={userId}
+            allPosts={allPosts}
+            userPosts={userPosts} />
         </Route>
         <Route exact path="/profile/userposts">
           <UserPosts
