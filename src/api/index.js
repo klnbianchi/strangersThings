@@ -74,7 +74,7 @@ export async function fetchUserData(token) {
 
 export async function editPost(title, description, price, location, willDeliver, token, postId) {
   try {
-    const { data } = await axios.patch(`${BASE}/posts${postId}`,
+    const data = await axios.patch(`${BASE}/posts/${postId}`,
       {
         post: {
           title: title,
@@ -84,8 +84,8 @@ export async function editPost(title, description, price, location, willDeliver,
           willDeliver: willDeliver,
         }
       }, { headers: { Authorization: `Bearer ${token}` } });
-    console.log(data)
-    return data
+    // console.log(data.data, "api")
+    return data.data
   } catch (error) {
     throw error;
   }
@@ -114,4 +114,6 @@ export async function sendMessage(postId,content, token) {
     throw error;
   }
 }
+
+
 

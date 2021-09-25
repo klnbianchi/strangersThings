@@ -7,14 +7,21 @@ import { getToken } from '../auth'
 
 const SingleUserPostPage = ({ userPosts, userName, messages, setUserPosts }) => {
     const { userPostId } = useParams();
-    const highlightedPost = [userPosts.find(post => post._id === userPostId)];
     const auth = getToken();
 
-    const postMessages = messages.filter(e => {
-        if (e.post._id && e.post._id === userPostId) {
-            return e
+    const highlightedPost=[userPosts.find((post)=>{
+        if(post._id === userPostId){
+            return true
+        }else{
+            false
         }
-    });
+    })];
+
+    // const postMessages = messages.filter(e => {
+    //     if (e.post._id && e.post._id === userPostId) {
+    //         return e
+    //     }
+    // });
 
     const myPost = userPosts.find((post) => {
         if (post._id === userPostId) {
@@ -36,7 +43,6 @@ const SingleUserPostPage = ({ userPosts, userName, messages, setUserPosts }) => 
              
             {auth
                 ? <>
-                <Link to="/profile/userposts/edit">Edit Post</Link>
                     <div className="single-post">
                    
                         <UserPosts
@@ -45,15 +51,18 @@ const SingleUserPostPage = ({ userPosts, userName, messages, setUserPosts }) => 
                             setUserPosts={setUserPosts} />
                            
                     </div>
-                    {/* <div className="edit-post-comp">
+                    <div className="edit-post-comp">
                     <EditPost 
-                    userPosts={highlightedPost}
-                    setUserPosts={setUserPosts} />
-                    </div> */}
-                    <div className="user-messages">
+                    userPosts={userPosts}
+                    highlightedPost={highlightedPost}
+                    setUserPosts={setUserPosts}
+                    userPostId={userPostId}
+                     />
+                    </div>
+                    {/* <div className="user-messages">
                         <h3>Messages</h3>
                         <SingleMessage messages={postMessages} />
-                    </div>
+                    </div> */}
 
                 </>
                 : null

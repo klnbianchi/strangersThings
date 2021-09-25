@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { editPost } from '../api'
 import { getToken } from '../auth'
 
-const EditPost = ({ userPosts, setUserPosts }) => {
-    const [title, setTitle] = useState(userPosts[0].title);
-    const [location, setLocation] = useState(userPosts[0].location);
-    const [price, setPrice] = useState(userPosts[0].price);
-    const [description, setDescription] = useState(userPosts[0].description);
-    const [willDeliver, setWillDeliver] = useState(userPosts[0].willDeliver);
+const EditPost = ({ userPosts, setUserPosts, userPostId, highlightedPost }) => {
+    const [title, setTitle] = useState(highlightedPost[0].title);
+    const [location, setLocation] = useState(highlightedPost[0].location);
+    const [price, setPrice] = useState(highlightedPost[0].price);
+    const [description, setDescription] = useState(highlightedPost[0].description);
+    const [willDeliver, setWillDeliver] = useState(highlightedPost[0].willDeliver);
+    const editPostId = highlightedPost[0]._id;
 
     return (
         <div className="edit-post">
@@ -18,17 +19,15 @@ const EditPost = ({ userPosts, setUserPosts }) => {
                     e.preventDefault();
                     const userToken = getToken();
                     try {
-                        const results = await editPost(title, description, price, location, willDeliver, userToken);
-                        setTitle('');
-                        setDescription('');
-                        setPrice('');
-                        setLocation('');
-                        willDeliver(false);
-
-                        const userPostsCopy = userPosts.slice();
-                        userPostsCopy.push(results.data.post)
-                        setAllPosts(userPostsCopy)
-
+                        const results = await editPost(title, description, price, location, willDeliver, userToken, userPostId);
+                        const filteredPosts = userPosts.filter(post => {
+                            if (post._id !== editPostId) {
+                                return post
+                            }
+                        });
+                        const userPostsCopy = filteredPosts.slice();
+                        userPostsCopy.unshift(results.data.post)
+                        setUserPosts(userPostsCopy)
                     } catch (err) {
                         console.log(err)
                     } finally {
@@ -66,8 +65,11 @@ const EditPost = ({ userPosts, setUserPosts }) => {
                     <input
                         type="checkbox"
                         id="post-deliver"
-                        value={location}
-                        onChange={(e) => setWillDeliver(true)}
+                        value={willDeliver}
+                        checked={willDeliver}
+                        onChange={(e) => {
+                            !willDeliver ? setWillDeliver(true) : setWillDeliver(false);
+                        }}
 
                     />
                     <p>Willing to Deliver?</p>
@@ -79,3 +81,5 @@ const EditPost = ({ userPosts, setUserPosts }) => {
 }
 
 export default EditPost;
+
+
