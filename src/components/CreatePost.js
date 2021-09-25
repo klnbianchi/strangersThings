@@ -8,7 +8,7 @@ const CreatePost = ({ setAllPosts, allPosts }) => {
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [willDeliver, setWillDeliver] = useState(false);
-
+console.log(willDeliver)
     return (
         <div className="create-post">
             <h2>Add a New Listing </h2>
@@ -71,7 +71,7 @@ const CreatePost = ({ setAllPosts, allPosts }) => {
                     <input
                         type="checkbox"
                         id="post-deliver"
-                        value={location}
+                        value={willDeliver}
                         onChange={(e) => setWillDeliver(true)}
 
                     />
