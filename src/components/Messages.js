@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch, useParams } from 'react-router-dom';
 import { SingleMessage } from './';
-import UserPosts from './UserPosts';
 
 const Messages = ({ messages, userId, allPosts, userPosts }) => {
   const { userPostId } = useParams();
