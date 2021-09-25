@@ -10,7 +10,7 @@ const Search = ({ keyword, setKeyword }) => {
 
   return (
     <div className="search-bar-main">
-    
+
       <form
         className="search-bar"
         onSubmit={(e) => {

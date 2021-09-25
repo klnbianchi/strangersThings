@@ -1,32 +1,42 @@
 import React from 'react';
-import StLogoHorizontal from '../images/st-horizontal.png'
-import Register from './Register'
-import {getToken} from '../auth'
+import StLogoHorizontal from '../images/st-horizontal.png';
+import stMug from '../images/stMug.jpg';
+import stPatch from '../images/stPatch.jpg';
+import dirtBike from '../images/dirtBike.jpeg';
+import puppy from '../images/puppy.jpeg';
+import { getToken } from '../auth';
 
 const Header = ({ userName }) => {
-  const auth=getToken();
+  const auth = getToken();
 
   return (
-
     <div>
-      {
-        !auth
-          ? <div className="welcome-header">
-            <h1>Welcome to</h1>
-            <img className="welcome-logo" src={StLogoHorizontal}/>
-            <div className="welcome-body">
-            <Register />
-            </div>
+      <div className="welcome-header">
+        <h2>{!auth ? "Welcome to" : `Welcome back ${userName}`}</h2>
+        <img className="welcome-logo" src={StLogoHorizontal} />
+        <p>A convenient destination for people to discover, buy and sell items.</p>
+        <div className="welcome-body">
+          <h2>Recently Sold Items:</h2>
+          <div className="welcome-products">
+            <figure>
+              <img className="welcome-image" src={stMug} />
+              <figcaption>Stranger Things Mug</figcaption>
+            </figure>
+            <figure>
+              <img className="welcome-image" src={dirtBike} />
+              <figcaption>Sweet Dirtbike</figcaption>
+            </figure>
+            <figure>
+              <img className="welcome-image" src={stPatch} />
+              <figcaption>Stranger Things Patch</figcaption>
+            </figure>
+            <figure>
+              <img className="welcome-image" src={puppy} />
+              <figcaption>Golden Retriever Puppies </figcaption>
+            </figure>
           </div>
-          : <div className="welcome-header">
-             <h1>Welcome to</h1>
-            <img className="welcome-logo" src={StLogoHorizontal}/>
-            <h2>{userName}!</h2>
-            </div>
-      }
-
-
-
+        </div>
+      </div>
     </div>
   )
 }

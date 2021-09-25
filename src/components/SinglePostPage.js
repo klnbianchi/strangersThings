@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { SinglePost } from './';
 import SendMessage from './SendMessage';
-import {getToken} from '../auth'
-
+import { getToken } from '../auth'
 
 const SinglePostPage = ({ allPosts, userId, setMessages, messages }) => {
     const { postId } = useParams();
-    // const highlightedPost = [allPosts.find(post => post._id === postId)]
-    const highlightedPost=[allPosts.find((post)=>{
-        if(post._id === postId){
+
+    const highlightedPost = [allPosts.find((post) => {
+        if (post._id === postId) {
             return true
-        }else{
+        } else {
             false
         }
     })];
 
     const auth = getToken();
-    const author=highlightedPost[0].author._id
 
     const myPost = allPosts.find((post) => {
-        if (post._id === postId) {
+        if (post.active && post._id === postId) {
             return true;
         } else {
             false;
@@ -40,11 +38,11 @@ const SinglePostPage = ({ allPosts, userId, setMessages, messages }) => {
             {auth ?
                 <>
                     {
-                        author !== userId
-                            ? <SendMessage 
-                            userName={highlightedPost[0].author.username}
-                            setMessages={setMessages}
-                            messages={messages} />
+                        myPost.author._id !== userId
+                            ? <SendMessage
+                                userName={highlightedPost[0].author.username}
+                                setMessages={setMessages}
+                                messages={messages} />
                             : null
                     }
                 </>

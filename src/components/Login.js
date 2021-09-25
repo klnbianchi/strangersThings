@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { loginUser } from '../api';
-import { storeToken,getToken } from '../auth';
-import StLogo from '../images/stLogo.png'
+import { storeToken } from '../auth';
+import StLogo from '../images/stLogo.png';
 
 const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { setIsLoggedin, setIsLoading } = props;
+
     const history = useHistory();
 
     const handleClick = () => {
@@ -16,22 +16,18 @@ const Login = (props) => {
 
     return (
         <div className="login">
-            <img className="st-logo-h2" src={StLogo}/>
+            <img className="st-logo-h2" src={StLogo} />
             <h2>Log-in to your account</h2>
             <form
                 className="login-form"
                 onSubmit={async (e) => {
                     e.preventDefault();
-
                     try {
                         const results = await loginUser(username, password);
-                        storeToken(results.data.token)
-                        setIsLoggedin(true);
+                        storeToken(results.data.token);
                         handleClick();
                     } catch (err) {
-                        console.log(err)
-                    } finally {
-
+                        console.log(err);
                     }
                 }}>
 

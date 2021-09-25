@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import StLogoHorizontal from './images/st-horizontal.png'
-import { fetchAllPosts, fetchUserData } from './api'
-import { clearCurrentUser, getToken } from './auth'
+import StLogoHorizontal from './images/st-horizontal.png';
+import { fetchAllPosts, fetchUserData } from './api';
+import { clearCurrentUser, getToken } from './auth';
 
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
   Link,
-  useParams,
-  useHistory
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 import {
   Posts,
@@ -24,27 +21,18 @@ import {
   UserPosts,
   Messages,
   SinglePostPage,
-  SendMessage,
   SingleUserPostPage,
-  SearchResultsPage
-} from "./components"
+  SearchResultsPage,
+} from "./components";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedin] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [userPosts, setUserPosts] = useState([]);
   const [userName, setUserName] = useState('');
   const [allPosts, setAllPosts] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [editPost, setEditPost] = useState(false);
   const [keyword, setKeyword] = useState('');
   const [userId, setUserId] = useState('');
-  const history = useHistory();
   const auth = getToken();
-
-  const handleClick = () => {
-    history.push('/login');
-  }
 
   useEffect(async () => {
     const posts = await fetchAllPosts();
@@ -60,7 +48,7 @@ const App = () => {
       setMessages(userInfo.messages);
       setUserId(userInfo._id);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }, []);
 
@@ -84,7 +72,6 @@ const App = () => {
             className={`nav-link ${auth ? 'show' : 'hide'}`}
             to="/login"
             onClick={() => {
-              setIsLoggedin(false);
               clearCurrentUser();
             }}>
             LOGOUT
@@ -104,7 +91,6 @@ const App = () => {
           <SinglePostPage
             allPosts={allPosts}
             userId={userId}
-            isLoggedIn={isLoggedIn}
             setMessages={setMessages}
             messages={messages}
           />
@@ -114,7 +100,6 @@ const App = () => {
           <Posts allPosts={allPosts}
             keyword={keyword}
             setKeyword={setKeyword}
-            isLoggedIn={isLoggedIn}
             setAllPosts={setAllPosts}
             setUserPosts={setUserPosts}
             userId={userId}
@@ -122,20 +107,13 @@ const App = () => {
         </Route>
 
         <Route exact path="/login">
-          <Login
-            setIsLoggedin={setIsLoggedin}
-            setIsLoading={setIsLoading}
-          />
+          <Login />
         </Route>
         <Route path="/login/register">
-          <Register
-            setIsLoggedin={setIsLoggedin}
-            setIsLoading={setIsLoading} />
+          <Register />
         </Route>
         <Route exact path="/profile">
           <Profile
-            setIsLoggedin={setIsLoggedin}
-            setIsLoading={setIsLoading}
             userPosts={userPosts}
             userName={userName} />
         </Route>
@@ -148,8 +126,6 @@ const App = () => {
         </Route>
         <Route exact path="/profile/userposts">
           <UserPosts
-            setIsLoggedin={setIsLoggedin}
-            setIsLoading={setIsLoading}
             userPosts={userPosts}
             userName={userName}
             setUserPosts={setUserPosts}
@@ -160,15 +136,11 @@ const App = () => {
             userPosts={userPosts}
             userName={userName}
             messages={messages}
-            editPost={editPost}
-            setEditPost={setEditPost}
-            isLoggedIn={isLoggedIn}
             setUserPosts={setUserPosts}
           />
         </Route>
         <Route exact path="/">
           <Header
-            isLoggedIn={isLoggedIn}
             userName={userName} />
         </Route>
       </Switch>

@@ -20,11 +20,11 @@ const SinglePost = ({ allPosts }) => {
                                 <p><span className="post-des-info">Seller:</span> {e.author.username ? e.author.username : null} </p>
                                 <p><span className="post-des-info">Location:</span> {e.location} </p>
                                 <p><span className="post-des-info">Willing to Deliver?:</span> {e.willDeliver ? "Yes" : "No"} </p>
-                                { e._id !== postId
-                                   ? <Link
+                                {e._id !== postId
+                                    ? <Link
                                         className="post-link"
                                         to={`/posts/${e._id}`}><button className="edit-post-button">View Post</button></Link>
-                                        : <Link
+                                    : <Link
                                         className="post-link"
                                         to={`/posts`}><button className="post-go-back">Back to Posts</button></Link>
                                 }
