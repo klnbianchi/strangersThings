@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { createPost } from '../api'
-import { getToken } from '../auth'
+import { createPost } from '../api';
+import { getToken } from '../auth';
 
 const CreatePost = ({ setAllPosts, allPosts, setUserPosts, userId }) => {
     const [title, setTitle] = useState('');
@@ -30,16 +30,16 @@ const CreatePost = ({ setAllPosts, allPosts, setUserPosts, userId }) => {
                         setWillDeliver(false);
 
                         const allPostsCopy = allPosts.slice();
-                        allPostsCopy.push(results.data.post)
-                        setAllPosts(allPostsCopy)
+                        allPostsCopy.unshift(results.data.post);
+                        setAllPosts(allPostsCopy);
                         const newUserPost = allPostsCopy.filter(e => {
                             if (e.author._id === userId) {
                                 return e
                             }
                         });
-                        setUserPosts(newUserPost)
+                        setUserPosts(newUserPost);
                     } catch (err) {
-                        console.log(err)
+                        console.log(err);
                     } finally {
 
                     }
@@ -53,7 +53,6 @@ const CreatePost = ({ setAllPosts, allPosts, setUserPosts, userId }) => {
                     placeholder="Title" />
 
                 <textarea
-                    // type="textarea"
                     id="post-description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}

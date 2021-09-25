@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { fetchAllPosts } from '../api'
-import { getToken } from '../auth'
-
-import CreatePost from './CreatePost'
+import React, { useEffect } from 'react';
+import { fetchAllPosts } from '../api';
+import { getToken } from '../auth';
+import CreatePost from './CreatePost';
 import SinglePost from './SinglePost';
-import Search from './Search'
+import Search from './Search';
 
 const Posts = ({ allPosts, setKeyword, keyword, userId, setAllPosts, setUserPosts }) => {
     const auth = getToken();
@@ -17,11 +16,12 @@ const Posts = ({ allPosts, setKeyword, keyword, userId, setAllPosts, setUserPost
     return (
         <div className="posts-main">
             <div className="search-posts">
-            <Search
-                setKeyword={setKeyword}
-                keyword={keyword}
-                allPosts={allPosts} />
-                </div>
+                <Search
+                    setKeyword={setKeyword}
+                    keyword={keyword}
+                    allPosts={allPosts}
+                />
+            </div>
 
             <div className="posts">
                 <h2>Stranger's Posts</h2>

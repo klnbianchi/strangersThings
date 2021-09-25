@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { registerUser } from '../api'
-import {storeToken} from '../auth'
-import StLogo from '../images/stLogo.png'
+import { registerUser } from '../api';
+import { storeToken } from '../auth';
+import StLogo from '../images/stLogo.png';
 
 const Register = (props) => {
     const [username, setUsername] = useState('');
@@ -10,37 +10,36 @@ const Register = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [token, setToken] = useState('');
     const history = useHistory();
-   
+
     const handleClick = () => {
         history.push('/profile');
     }
 
     return (
         <div className="login">
-            <img className="st-logo-h2" src={StLogo}/>
+            <img className="st-logo-h2" src={StLogo} />
             <h2>Register for an account</h2>
             <form
                 className="login-form"
                 onSubmit={async (e) => {
                     e.preventDefault();
-                    // password === confirmPassword ? setPasswordMatch(true) : null;
+
                     if (password.length >= 8 && password === confirmPassword) {
                         try {
                             const results = await registerUser(username, password);
                             storeToken(results.data.token);
                             setToken(results.data.token);
-                            setIsLoggedIn(true);
                             setUsername('');
-                            setPassword('') ;
+                            setPassword('');
                             handleClick();
                         } catch (err) {
-                            console.log(err)
-                        } 
+                            console.log(err);
+                        }
                     } else if (password !== confirmPassword) {
-                        alert('The passwords you entered to not match. Please try again')
+                        alert('The passwords you entered to not match. Please try again');
                     } else {
-                        alert('Password must be at least 8 characters')
-                    }  
+                        alert('Password must be at least 8 characters');
+                    }
                 }}>
                 <input
                     type="text"

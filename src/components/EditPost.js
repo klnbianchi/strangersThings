@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { editPost } from '../api'
-import { getToken } from '../auth'
+import { editPost } from '../api';
+import { getToken } from '../auth';
 
 const EditPost = ({ userPosts, setUserPosts, userPostId, highlightedPost }) => {
     const [title, setTitle] = useState(highlightedPost[0].title);
@@ -26,10 +26,10 @@ const EditPost = ({ userPosts, setUserPosts, userPostId, highlightedPost }) => {
                             }
                         });
                         const userPostsCopy = filteredPosts.slice();
-                        userPostsCopy.unshift(results.data.post)
-                        setUserPosts(userPostsCopy)
+                        userPostsCopy.unshift(results.data.post);
+                        setUserPosts(userPostsCopy);
                     } catch (err) {
-                        console.log(err)
+                        console.log(err);
                     } finally {
 
                     }

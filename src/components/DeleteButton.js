@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { deletePost } from '../api';
-import { getToken } from '../auth'
+import { getToken } from '../auth';
 
 const DeleteButton = ({ userPosts, setUserPosts, highlightedPost }) => {
     const { userPostId } = useParams();
@@ -25,10 +25,10 @@ const DeleteButton = ({ userPosts, setUserPosts, highlightedPost }) => {
                                 return post
                             }
                         });
-                        setUserPosts(filteredPosts)
+                        setUserPosts(filteredPosts);
                         handleClick();
                     } catch (err) {
-                        console.log(err)
+                        console.log(err);
                     }
                 }}>
                 <span className="material-icons">delete</span>  Delete Post

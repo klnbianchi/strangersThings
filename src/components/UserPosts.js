@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 
-import { getToken } from '../auth'
-
-const UserPosts = ({ userPosts, userName, setUserPosts }) => {
+const UserPosts = ({ userPosts, userName }) => {
     const { userPostId } = useParams();
     const history = useHistory();
 
