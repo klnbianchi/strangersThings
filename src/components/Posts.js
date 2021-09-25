@@ -6,7 +6,7 @@ import CreatePost from './CreatePost'
 import SinglePost from './SinglePost';
 import Search from './Search'
 
-const Posts = ({ allPosts, setKeyword, keyword, isLoggedIn, setAllPosts }) => {
+const Posts = ({ allPosts, setKeyword, keyword, userId, setAllPosts, setUserPosts }) => {
     const auth = getToken();
 
     useEffect(async () => {
@@ -35,7 +35,9 @@ const Posts = ({ allPosts, setKeyword, keyword, isLoggedIn, setAllPosts }) => {
                 {auth
                     ? <CreatePost
                         setAllPosts={setAllPosts}
-                        allPosts={allPosts} />
+                        allPosts={allPosts}
+                        setUserPosts={setUserPosts}
+                        userId={userId} />
                     : null
                 }
             </div>

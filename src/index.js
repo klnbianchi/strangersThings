@@ -116,6 +116,8 @@ const App = () => {
             setKeyword={setKeyword}
             isLoggedIn={isLoggedIn}
             setAllPosts={setAllPosts}
+            setUserPosts={setUserPosts}
+            userId={userId}
           />
         </Route>
 
@@ -150,8 +152,6 @@ const App = () => {
             setIsLoading={setIsLoading}
             userPosts={userPosts}
             userName={userName}
-            setEditPost={setEditPost}
-            editPost={editPost}
             setUserPosts={setUserPosts}
           />
         </Route>

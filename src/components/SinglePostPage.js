@@ -7,8 +7,15 @@ import {getToken} from '../auth'
 
 const SinglePostPage = ({ allPosts, userId, setMessages, messages }) => {
     const { postId } = useParams();
-    const highlightedPost = [allPosts.find(post => post._id === postId)]
-    
+    // const highlightedPost = [allPosts.find(post => post._id === postId)]
+    const highlightedPost=[allPosts.find((post)=>{
+        if(post._id === postId){
+            return true
+        }else{
+            false
+        }
+    })];
+
     const auth = getToken();
     const author=highlightedPost[0].author._id
 
@@ -43,8 +50,6 @@ const SinglePostPage = ({ allPosts, userId, setMessages, messages }) => {
                 </>
 
                 : null
-
-
             }
         </div>
     }

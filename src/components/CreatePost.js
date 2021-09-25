@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { createPost } from '../api'
 import { getToken } from '../auth'
 
-const CreatePost = ({ setAllPosts, allPosts }) => {
+const CreatePost = ({ setAllPosts, allPosts, setUserPosts, userId }) => {
     const [title, setTitle] = useState('');
     const [location, setLocation] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [willDeliver, setWillDeliver] = useState(false);
-console.log(willDeliver)
+ 
     return (
         <div className="create-post">
             <h2>Add a New Listing </h2>
@@ -32,7 +32,12 @@ console.log(willDeliver)
                         const allPostsCopy = allPosts.slice();
                         allPostsCopy.push(results.data.post)
                         setAllPosts(allPostsCopy)
-
+                        const newUserPost = allPostsCopy.filter(e=>{
+                            if (e.author._id===userId){
+                            return e
+                        }
+                        });
+                        setUserPosts(newUserPost)
                     } catch (err) {
                         console.log(err)
                     } finally {

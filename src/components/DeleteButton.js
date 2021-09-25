@@ -3,25 +3,16 @@ import { useParams, useHistory } from 'react-router-dom';
 import { deletePost } from '../api';
 import { getToken } from '../auth'
 
-
-
-const EditAndDeleteButton=(userPosts, setEditPost)=>{
+const DeleteButton=({userPosts, setUserPosts, highlightedPost})=>{
     const { userPostId } = useParams();
     const history = useHistory();
-
+    const deletePostId = highlightedPost[0]._id;
     const handleClick = () => {
         history.push('/profile/userposts');
     };
-console.log(setEditPost)
-    // const activePosts=userPosts.filter
 
     return(
         <>
-        <button
-            className="edit-post-button"
-            onClick={() =>setEditPost(true)}>
-            Edit Post
-    </button>
         <button
             className="delete-post-button"
             onClick={async () => {
@@ -29,15 +20,21 @@ console.log(setEditPost)
                     const userToken = getToken();
                     const post_ID = userPostId;
                     const emptyPostObj = await deletePost(userToken, post_ID);
+                    const filteredPosts = userPosts.filter(post => {
+                        if (post._id !== deletePostId) {
+                            return post
+                        }
+                    });
+                    setUserPosts(filteredPosts)
                     handleClick();
                 } catch (err) {
                     console.log(err)
                 }
             }}>
-            Delete Post
+           <span className="material-icons">delete</span>  Delete Post
     </button>
     </>
     )
 }
 
-export default EditAndDeleteButton;
+export default DeleteButton;

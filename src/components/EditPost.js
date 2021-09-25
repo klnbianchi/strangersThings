@@ -37,26 +37,26 @@ const EditPost = ({ userPosts, setUserPosts, userPostId, highlightedPost }) => {
 
                 <input
                     type="text"
-                    id="post-title"
+                    id="edit-title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Title" />
 
                 <textarea
-                    id="post-description"
+                    id="edit-description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Description"
                     rows={8} />
                 <input
                     type="text"
-                    id="post-price"
+                    id="edit-price"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     placeholder="Price" />
                 <input
                     type="text"
-                    id="post-location"
+                    id="edit-location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     placeholder="Location" />
@@ -64,7 +64,7 @@ const EditPost = ({ userPosts, setUserPosts, userPostId, highlightedPost }) => {
                 <label className="post-checkbox">
                     <input
                         type="checkbox"
-                        id="post-deliver"
+                        id="edit-deliver"
                         value={willDeliver}
                         checked={willDeliver}
                         onChange={(e) => {
