@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { editPost } from '../api'
 import { getToken } from '../auth'
 
@@ -70,7 +70,6 @@ const EditPost = ({ userPosts, setUserPosts, userPostId, highlightedPost }) => {
                         onChange={(e) => {
                             !willDeliver ? setWillDeliver(true) : setWillDeliver(false);
                         }}
-
                     />
                     <p>Willing to Deliver?</p>
                 </label>

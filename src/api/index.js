@@ -84,7 +84,6 @@ export async function editPost(title, description, price, location, willDeliver,
           willDeliver: willDeliver,
         }
       }, { headers: { Authorization: `Bearer ${token}` } });
-    // console.log(data.data, "api")
     return data.data
   } catch (error) {
     throw error;

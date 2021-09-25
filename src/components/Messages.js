@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {Link, Route, Switch} from 'react-router-dom';
+import {Link, Route, Switch, useParams} from 'react-router-dom';
 import { SingleMessage } from './';
+import UserPosts from './UserPosts'
 
-const Messages = ({ messages, userId }) => {
-
+const Messages = ({ messages, userId, allPosts, userPosts }) => {
+  const {userPostId, mPostId}=useParams();
   const sentMessages = messages.filter(e => {
     if (e.fromUser._id === userId) {
       return e
@@ -16,6 +17,18 @@ const Messages = ({ messages, userId }) => {
     }
   });
 
+   const postMessages = messages.filter(e => {
+        if (e.post._id && e.post._id === userPostId) {
+            return e
+        }
+    });
+
+const postWithMessage =userPosts.filter(post=>{
+  if (post._id === userPostId){
+    return post
+  }
+});
+console.log(postWithMessage)
   return (
 
     <div className='messages-main'>
@@ -38,6 +51,9 @@ const Messages = ({ messages, userId }) => {
             </div>
         }
         </div>
+         </Route>
+         <Route path="/profile/messages/inbox/:mPostId">
+           <UserPosts userPosts={postWithMessage} />
          </Route>
          <Route exact path ="/profile/messages/sent">
          <div className='sent-messages'>

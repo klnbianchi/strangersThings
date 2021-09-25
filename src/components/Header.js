@@ -3,7 +3,7 @@ import StLogoHorizontal from '../images/st-horizontal.png'
 import Register from './Register'
 import {getToken} from '../auth'
 
-const Header = ({ isLoggedIn, userName }) => {
+const Header = ({ userName }) => {
   const auth=getToken();
 
   return (

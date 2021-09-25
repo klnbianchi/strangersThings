@@ -8,7 +8,7 @@ const CreatePost = ({ setAllPosts, allPosts, setUserPosts, userId }) => {
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [willDeliver, setWillDeliver] = useState(false);
- 
+
     return (
         <div className="create-post">
             <h2>Add a New Listing </h2>
@@ -32,10 +32,10 @@ const CreatePost = ({ setAllPosts, allPosts, setUserPosts, userId }) => {
                         const allPostsCopy = allPosts.slice();
                         allPostsCopy.push(results.data.post)
                         setAllPosts(allPostsCopy)
-                        const newUserPost = allPostsCopy.filter(e=>{
-                            if (e.author._id===userId){
-                            return e
-                        }
+                        const newUserPost = allPostsCopy.filter(e => {
+                            if (e.author._id === userId) {
+                                return e
+                            }
                         });
                         setUserPosts(newUserPost)
                     } catch (err) {
@@ -78,7 +78,6 @@ const CreatePost = ({ setAllPosts, allPosts, setUserPosts, userId }) => {
                         id="post-deliver"
                         value={willDeliver}
                         onChange={(e) => setWillDeliver(true)}
-
                     />
                     <p>Willing to Deliver?</p>
                 </label>
